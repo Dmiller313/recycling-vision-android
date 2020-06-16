@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">recycling-vision</string>
+    <string name="emailErrText">There was an error sending the validation email, please try again</string>
+    <string name="emailSuccessText">Success! Please check your email for a validation link.</string>
+</resources>
