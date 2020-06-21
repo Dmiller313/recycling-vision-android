@@ -36,17 +36,18 @@ public class ValidationEmail extends AppCompatActivity {
         Intent intent = getIntent();
         userMessage.findViewById(R.id.results);
         String [] userData = intent.getStringArrayExtra("");
-        User user = new User(userData[0], userData[1], userData[2], userData[3], userData[4], userData[5]);
+        //Commented until User class is made
+        /*User user = new User(userData[0], userData[1], userData[2], userData[3], userData[4], userData[5]);
         try {
             sendEmail(user);
             userMessage.setText(R.string.emailSuccessText);
         } catch(Exception e){
             System.out.println("The RV URL is currently unavailable");
             userMessage.setText(R.string.emailErrText);
-        }
+        }*/
     }
-
-
+//Commented until User class is made
+/*
     public void sendEmail(User user) throws MalformedURLException {
         URL url = new URL("https://recycling-vision.herokuapp.com/emailer");
         HttpURLConnection client = null;
@@ -71,5 +72,5 @@ public class ValidationEmail extends AppCompatActivity {
         } catch(Exception e){
             System.out.println("Error making connection");
         }
-    }
+    }*/
 }
