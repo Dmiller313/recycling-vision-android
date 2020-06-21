@@ -42,10 +42,12 @@ public class User {
 
     // Setters and Getters
     public int getUserID() {
+
         return userID;
     }
 
     public void setUserID(int userID) {
+
         this.userID = userID;
     }
 
@@ -54,38 +56,47 @@ public class User {
     }
 
     public void setUserName(String userName) {
+
         this.userName = userName;
     }
 
     public String getPhoneNum() {
+
         return phoneNum;
     }
 
     public void setPhoneNum(String phoneNum) {
+
         this.phoneNum = phoneNum;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
     public String getPassword() {
+
         return password;
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 
     public String getPostalCode() {
+
         return postalCode;
     }
 
     public void setPostalCode(String postalCode) {
+
         this.postalCode = postalCode;
     }
 
@@ -94,15 +105,19 @@ public class User {
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
+
         this.dateOfBirth = dateOfBirth;
     }
 
     public Boolean getValidationStatus() {
+
         return validationStatus;
     }
 
     public void setValidationStatus(Boolean validationStatus) {
         this.validationStatus = validationStatus;
     }
+
+
 }
 
