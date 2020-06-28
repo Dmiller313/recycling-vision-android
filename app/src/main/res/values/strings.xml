@@ -4,4 +4,10 @@
     <string name="emailSuccessText">Success! Please check your email for a validation link.</string>
     <string name="loadingInitialPercent">0%</string>
     <string name="welcome">Recycling Vision</string>
+    <string name="account_recovery_title">Recover Account</string>
+    <string name="e_mail">E-Mail:</string>
+    <string name="example_abc_com">example@abc.com</string>
+    <string name="submit">Submit</string>
+    <string name="exit">Exit</string>
+    <string name="acc_recovery_instr">Please enter the email address used to create the account</string>
 </resources>
