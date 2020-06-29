@@ -1,8 +1,11 @@
 package com.example.recycling_vision;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class User {
+public class User implements Parcelable {
 
     // Class variables
     private int userID;
@@ -15,7 +18,6 @@ public class User {
     private Boolean validationStatus;
 
     //Constructor
-
     public User() {
         this.userID = -1;
         this.userName = null;
@@ -38,6 +40,19 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.validationStatus = validationStatus;
     }
+
+
+    protected User(Parcel in) {
+        userID = in.readInt();
+        userName = in.readString();
+        phoneNum = in.readString();
+        email = in.readString();
+        password = in.readString();
+        postalCode = in.readString();
+        byte tmpValidationStatus = in.readByte();
+        validationStatus = tmpValidationStatus == 0 ? null : tmpValidationStatus == 1;
+    }
+
 
 
     // Setters and Getters
@@ -119,5 +134,31 @@ public class User {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(userID);
+        dest.writeString(userName);
+        dest.writeString(phoneNum);
+        dest.writeString(email);
+        dest.writeString(password);
+        dest.writeString(postalCode);
+        dest.writeByte((byte) (validationStatus == null ? 0 : validationStatus ? 1 : 2));
+    }
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }
 
