@@ -4,4 +4,11 @@
     <string name="emailSuccessText">Success! Please check your email for a validation link.</string>
     <string name="loadingInitialPercent">0%</string>
     <string name="welcome">Recycling Vision</string>
+    
+    <string name="track_history">Track History?</string>
+    <string name="change_npassword">Change\nPassword</string>
+    <string name="change_nlocation">Change\nLocation</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="recover_account">Recover Account</string>
+    <string name="logout">logout</string>
 </resources>
