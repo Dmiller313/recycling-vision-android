@@ -1,8 +1,9 @@
-package com.example.recycling_vision;
+package com.prj666.recycling_vision.user;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import com.prj666.recycling_vision.R;
+
 
 public class AccountRecovery extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.recycling_vision;
+package com.prj666.recycling_vision.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import com.prj666.recycling_vision.Navigation;
+import com.prj666.recycling_vision.R;
 
 public class ValidationEmail extends AppCompatActivity {
 
@@ -28,7 +25,7 @@ public class ValidationEmail extends AppCompatActivity {
 
         backButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(ValidationEmail.this, MainActivity.class));
+                startActivity(new Intent(ValidationEmail.this, Navigation.class));
                 finishAffinity();
             }
         });

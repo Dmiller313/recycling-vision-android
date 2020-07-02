@@ -1,4 +1,4 @@
-package com.example.prj666_recycling_references;
+package com.prj666.recycling_vision.recycling_references;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.prj666.recycling_vision.R;
 
 public class RecyclingReference extends AppCompatActivity {
     final String RECYCLING_REFERENCE_LINK = "https://www.toronto.ca/services-payments/recycling" +

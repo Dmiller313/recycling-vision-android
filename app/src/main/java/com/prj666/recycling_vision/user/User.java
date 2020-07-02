@@ -1,4 +1,4 @@
-package com.example.recycling_vision;
+package com.prj666.recycling_vision.user;
 
 import java.util.Date;
 
@@ -27,7 +27,6 @@ public class User {
         this.validationStatus = null;
     }
 
-
     public User(int userID, String userName, String phoneNum, String email, String password, String postalCode, Date dateOfBirth, Boolean validationStatus) {
         this.userID = userID;
         this.userName = userName;
@@ -38,8 +37,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.validationStatus = validationStatus;
     }
-
-
     // Setters and Getters
     public int getUserID() {
 
@@ -117,7 +114,5 @@ public class User {
     public void setValidationStatus(Boolean validationStatus) {
         this.validationStatus = validationStatus;
     }
-
-
 }
 
