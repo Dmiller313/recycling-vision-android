@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class RecyclingReference extends AppCompatActivity {
-    final String RECYCLING_REFERENCE_LINK = "https://www.toronto.ca/services payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/";
+    final String RECYCLING_REFERENCE_LINK = "https://www.toronto.ca/servicespayments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/";
 
 
 
