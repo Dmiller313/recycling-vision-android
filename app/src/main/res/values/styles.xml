@@ -10,7 +10,5 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/loading</item>
     </style>
-    <style name="MaterialDesign" parent="Theme.MaterialComponents.Light">
 
-    </style>
 </resources>

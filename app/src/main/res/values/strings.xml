@@ -11,4 +11,16 @@
     <string name="save_settings">Save Settings</string>
     <string name="recover_account">Recover Account</string>
     <string name="logout">logout</string>
+    <string name="logo">Logo</string>
+    <string name="registration">Registration</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="register">Register</string>
+    <string name="references">REFERENCES</string>
+    <string name="city_of_toronto_website">- City of Toronto Website</string>
 </resources>

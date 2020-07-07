@@ -17,7 +17,7 @@ public class RecyclingReference extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycling_reference);
-        /*
+
         referenceLink = findViewById(R.id.referenceLink);
 
         referenceLink.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +29,6 @@ public class RecyclingReference extends AppCompatActivity {
 
             }
 
-        });*/
+        });
     }
 }
