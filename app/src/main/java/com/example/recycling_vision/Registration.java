@@ -62,7 +62,8 @@ public class Registration extends AppCompatActivity {
     }
 
     public void sendUser(User user) throws MalformedURLException {
-        URL url = new URL("https://recycling-vision.herokuapp.com/emailer");
+        URL url = new URL("https://recycling-vision.herokuapp.com/users");
         HttpURLConnection client = null;
+        
     }
 }
