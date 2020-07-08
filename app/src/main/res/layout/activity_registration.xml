@@ -120,6 +120,19 @@
         app:layout_constraintStart_toStartOf="@+id/edtTxtPhone"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtPhone" />
 
+    <EditText
+        android:id="@+id/edtTxtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/date_of_birth"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/edtTxtPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/edtTxtPostalAddress"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtPostalAddress" />
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
@@ -127,7 +140,9 @@
         android:layout_marginTop="10dp"
         android:text="@string/register"
         app:backgroundTint="#80DEEA"
-        app:layout_constraintEnd_toEndOf="@+id/edtTxtPostalAddress"
-        app:layout_constraintStart_toStartOf="@+id/edtTxtPostalAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtPostalAddress" />
+        app:layout_constraintEnd_toEndOf="@+id/edtTxtDate"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="@+id/edtTxtDate"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtDate" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

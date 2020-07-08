@@ -3,12 +3,13 @@ package com.example.recycling_vision;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User implements Parcelable {
 
     // Class variables
-    private int userID;
     private String userName;
     private String phoneNum;
     private String email;
@@ -19,7 +20,7 @@ public class User implements Parcelable {
 
     //Constructor
     public User() {
-        this.userID = -1;
+
         this.userName = null;
         this.phoneNum = null;
         this.email = null;
@@ -30,20 +31,21 @@ public class User implements Parcelable {
     }
 
 
-    public User(int userID, String userName, String phoneNum, String email, String password, String postalCode, Date dateOfBirth, Boolean validationStatus) {
-        this.userID = userID;
+    public User(String userName, String phoneNum, String email, String password,
+                String postalCode, String dateOfBirth, Boolean validationStatus) throws ParseException {
+
         this.userName = userName;
         this.phoneNum = phoneNum;
         this.email = email;
         this.password = password;
         this.postalCode = postalCode;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth);
         this.validationStatus = validationStatus;
     }
 
 
     protected User(Parcel in) {
-        userID = in.readInt();
+
         userName = in.readString();
         phoneNum = in.readString();
         email = in.readString();
@@ -55,16 +57,8 @@ public class User implements Parcelable {
 
 
 
+
     // Setters and Getters
-    public int getUserID() {
-
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-
-        this.userID = userID;
-    }
 
     public String getUserName() {
         return userName;
@@ -141,7 +135,6 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(userID);
         dest.writeString(userName);
         dest.writeString(phoneNum);
         dest.writeString(email);
