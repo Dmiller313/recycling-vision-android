@@ -1,4 +1,4 @@
-package com.example.recycling_vision;
+package com.prj666.recycling_vision;
 
 import org.junit.Test;
 

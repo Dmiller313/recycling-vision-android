@@ -1,4 +1,4 @@
-package com.example.recycling_vision;
+package com.prj666.recycling_vision;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.recycling_vision", appContext.getPackageName());
+        assertEquals("com.prj666.recycling_vision", appContext.getPackageName());
     }
 }

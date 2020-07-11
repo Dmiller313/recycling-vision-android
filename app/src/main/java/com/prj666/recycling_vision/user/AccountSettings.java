@@ -37,12 +37,12 @@ public class AccountSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
-        historySwitch = findViewById(R.id.historySwitch);
+        /*historySwitch = findViewById(R.id.historySwitch);
         changePassword = findViewById(R.id.changePassword);
         changeLocation = findViewById(R.id.changeLocation);
         saveButton = findViewById(R.id.saveButton);
         userSettings = new Settings(null, null);
-        userSettingsFile = new File(this.getFilesDir(), SETTINGS_FILE)
+        userSettingsFile = new File(this.getFilesDir(), SETTINGS_FILE);
         try {
             if (!userSettingsFile.exists()) {
                 if (userSettingsFile.createNewFile()) {
@@ -136,6 +136,6 @@ public class AccountSettings extends AppCompatActivity {
                 .setNegativeButton("Cancel", null)
                 .setCancelable(true) //close AlertDialog via the navigation bar's "back" button
                 .create()
-                .show();
+                .show();*/
     }
 }

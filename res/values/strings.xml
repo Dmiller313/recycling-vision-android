@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">Official Recycling Reference</string>
-    <string name="city_recycling_link"><a href="https://www.toronto.ca/services-payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/">https://www.toronto.ca/services-payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/</a></string>
-    <string name="link_title">Official City of Toronto \"What Goes in the Blue Bin?\" Recycling Reference Webpage:</string>
-</resources>
