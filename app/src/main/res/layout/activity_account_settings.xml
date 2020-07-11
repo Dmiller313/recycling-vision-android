@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".AccountSettings">
+    tools:context=".user.AccountSettings">
 
     <LinearLayout
         android:layout_width="300dp"

@@ -12,13 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".recycling_references.RecyclingReference"/>
-        <activity android:name=".user.Registration" />
-        <activity android:name=".user.AccountSettings"/>
-        <activity android:name=".user.ValidationEmail" />
+<<<<<<< HEAD
+        <activity android:name=".user.AccountSettings" />
         <activity android:name=".user.AccountRecovery" />
+        <activity android:name=".user.ValidationEmail" />
         <activity
             android:name=".Navigation"
+||||||| merged common ancestors
+        <activity android:name=".ValidationEmail" />
+        <activity android:name=".MainActivity"
+=======
+        <activity android:name=".AccountSettings"/>
+        <activity android:name=".Settings"/>
+        <activity android:name=".RecyclingReference"/>
+        <activity android:name=".Registration" />
+        <activity android:name=".ValidationEmail" />
+        <activity
+            android:name=".MainActivity"
+>>>>>>> master
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
