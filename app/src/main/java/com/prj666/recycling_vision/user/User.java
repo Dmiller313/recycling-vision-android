@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class User implements Parcelable {
 
@@ -19,16 +20,6 @@ public class User implements Parcelable {
     private Boolean validationStatus;
 
     //Constructor
-    public User() {
-
-        this.userName = null;
-        this.phoneNum = null;
-        this.email = null;
-        this.password = null;
-        this.postalCode = null;
-        this.dateOfBirth = null;
-        this.validationStatus = null;
-    }
 
     public User(String userName, String phoneNum, String email, String password,
                 String postalCode, String dateOfBirth, Boolean validationStatus) throws ParseException {
@@ -38,7 +29,7 @@ public class User implements Parcelable {
         this.email = email;
         this.password = password;
         this.postalCode = postalCode;
-        this.dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth);
+        this.dateOfBirth = new SimpleDateFormat("yyyy/mm/dd", Locale.CANADA).parse(dateOfBirth);
         this.validationStatus = validationStatus;
     }
 

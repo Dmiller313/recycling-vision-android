@@ -10,17 +10,22 @@ import android.widget.TextView;
 
 import com.prj666.recycling_vision.R;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
+import java.util.Date;
 
 public class Registration extends AppCompatActivity {
 
-
+    static final String salt = "salt";
     private TextView edtTxtFName, edtTxtLName, edtTxtPassword, edtTxtRepeatPass,
             edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtDate;
     private Button btnRegister;
+    private String passwordHash;
+    private Date userDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,19 +47,25 @@ public class Registration extends AppCompatActivity {
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
+                try {
+                    passwordHash = getSecurePassword(edtTxtPassword.getText().toString() + salt);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+
+
                 User user = null;
                 try {
                     user = new User(edtTxtFName.getText().toString()+" "+ edtTxtLName.getText().toString(),
-                            edtTxtPhone.getText().toString(),edtTxtEmail.getText().toString(),edtTxtPassword.getText().toString(),
+                            edtTxtPhone.getText().toString(),edtTxtEmail.getText().toString(), passwordHash,
                             edtTxtPostalAddress.getText().toString(), edtTxtDate.getText().toString(), false);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                try {
-                    sendUser(user);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+
+                sendUser(user);
 
                 /*
                 Intent login = new Intent(Registration.this, Login.class);
@@ -62,10 +73,28 @@ public class Registration extends AppCompatActivity {
             }
         });
     }
+    //todo
+    public void sendUser(User user)  {
 
-    public void sendUser(User user) throws MalformedURLException {
-        URL url = new URL("https://recycling-vision.herokuapp.com/users");
-        HttpURLConnection client = null;
         
+    }
+
+    public static String getSecurePassword(String password) throws  NoSuchAlgorithmException {
+
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(
+                password.getBytes(StandardCharsets.UTF_8));
+        String sha_256hex = bytesToHex(hash);
+        return  sha_256hex;
+    }
+
+    private static String bytesToHex(byte[] hash) {
+        StringBuffer hexString = new StringBuffer();
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 }
