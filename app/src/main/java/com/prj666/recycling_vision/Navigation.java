@@ -18,11 +18,6 @@ import com.prj666.recycling_vision.user.Settings;
 
 public class Navigation extends AppCompatActivity {
 
-    private Button takePhoto;
-    private Button settings;
-    private Button reference;
-    private Button history;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme); //Display loading screen
@@ -30,10 +25,9 @@ public class Navigation extends AppCompatActivity {
         //if(TOU.accepted){
             if(Login.isUserLoggedIn()){
                 setContentView(R.layout.activity_navigation);
-                takePhoto = findViewById(R.id.takephoto);
-                settings = findViewById(R.id.settings);
-                reference = findViewById(R.id.reference);
-                history = findViewById(R.id.history);
+                Button takePhoto = findViewById(R.id.takephoto);
+                Button settings = findViewById(R.id.settings);
+                Button reference = findViewById(R.id.reference);
 
                 takePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -58,17 +52,6 @@ public class Navigation extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent i = new Intent(Navigation.this, RecyclingReference.class);
                         startActivity(i);
-                    }
-                });
-
-                history.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
-
-                        //Intent i = new Intent(Navigation.this, .class);
-                        //startActivity(i);
-
                     }
                 });
 
