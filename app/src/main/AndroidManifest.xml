@@ -17,6 +17,7 @@
         <activity android:name=".user.AccountSettings"/>
         <activity android:name=".user.ValidationEmail" />
         <activity android:name=".user.AccountRecovery" />
+        <activity android:name=".user.Login" />
         <activity
             android:name=".Navigation"
             android:theme="@style/SplashTheme">

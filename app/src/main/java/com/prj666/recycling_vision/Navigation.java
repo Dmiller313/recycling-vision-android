@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.prj666.recycling_vision.user.Login;
+
 public class Navigation extends AppCompatActivity {
 
     @Override
@@ -12,7 +14,13 @@ public class Navigation extends AppCompatActivity {
         setTheme(R.style.AppTheme); //Display loading screen
         super.onCreate(savedInstanceState);
         //if(TOU.accepted){
-            setContentView(R.layout.activity_navigation);
+            if(Login.isUserLoggedIn()){
+                setContentView(R.layout.activity_navigation);
+            }
+            else {
+                Intent i = new Intent(Navigation.this, Login.class);
+                startActivity(i);
+            }
         /*}
         else{
             setContentView(R.layout.activity_tou);
