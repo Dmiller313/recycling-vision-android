@@ -36,10 +36,10 @@ public class ValidationEmail extends AppCompatActivity {
         setContentView(R.layout.activity_validationemail);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
         final User user;
+        user = getIntent().getExtras().getParcelable("User");
         try {
             //temp user object until registration is made
-            user = new User("androidTempUser", "333-333-3333",
-                    "david_miller@rogers.com", "admin66", "L6L3L3", format.parse("1993-03-13"));
+
 
             //Commented until activity_validationemail is made
             /*backButton.findViewById(R.id.back);
@@ -52,6 +52,7 @@ public class ValidationEmail extends AppCompatActivity {
             });*/
 
             //Commented until Registration class/activity are made
+
             /*Intent intent = getIntent();
             String [] userData = intent.getStringArrayExtra("");
 

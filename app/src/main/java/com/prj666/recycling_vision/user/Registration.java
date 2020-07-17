@@ -112,8 +112,9 @@ public class Registration extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if (validEmail.equals("available")){
-                        Intent i = new Intent();
+                        Intent i = new Intent(getBaseContext(), ValidationEmail.class);
                         i.putExtra("User",user);
+                        startActivity(i);
 
                     }else {
                         Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
