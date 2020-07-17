@@ -116,6 +116,18 @@ public class User implements Parcelable {
         this.validationStatus = validationStatus;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", validationStatus=" + validationStatus +
+                '}';
+    }
 
     @Override
     public int describeContents() {

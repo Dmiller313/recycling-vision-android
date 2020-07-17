@@ -33,7 +33,6 @@ public class Registration extends AppCompatActivity {
     static final String salt = "salt";
     private TextView edtTxtFName, edtTxtLName, edtTxtPassword, edtTxtRepeatPass,
             edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtDate;
-    private String passwordHash;
     private String validEmail;
 
     @Override
@@ -61,7 +60,7 @@ public class Registration extends AppCompatActivity {
 
         String url = "https://recycling-vision.herokuapp.com/exists";
         Map<String, String> jsonData = new HashMap<>();
-        jsonData.put("email", "dmiller@myseneca.ca");
+        jsonData.put("email", edtTxtEmail.getText().toString());
 
         JSONObject json = new JSONObject(jsonData);
 
@@ -98,28 +97,26 @@ public class Registration extends AppCompatActivity {
             public void onClick(View v) {
                 if(validateData()){
 
+
+                  
                     try {
-                        passwordHash = getSecurePassword(edtTxtPassword.getText().toString() + salt);
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
-                    }
-                    User user = null;
-                    try {
-                        user = new User(edtTxtFName.getText().toString()+" "+ edtTxtLName.getText().toString(),
-                                edtTxtPhone.getText().toString(),edtTxtEmail.getText().toString(), passwordHash,
+                        User user = new User(edtTxtFName.getText().toString() + " " + edtTxtLName.getText().toString(),
+                                edtTxtPhone.getText().toString(), edtTxtEmail.getText().toString(), edtTxtPassword.getText().toString(),
                                 edtTxtPostalAddress.getText().toString(), edtTxtDate.getText().toString(), false);
+
+                        if (validEmail.equals("available")){
+                            Intent i = new Intent(getBaseContext(), ValidationEmail.class);
+                            i.putExtra("User",user);
+                            startActivity(i);
+
+                        }else {
+                            Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
+
+                        }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    if (validEmail.equals("available")){
-                        Intent i = new Intent(getBaseContext(), ValidationEmail.class);
-                        i.putExtra("User",user);
-                        startActivity(i);
-
-                    }else {
-                        Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
-
-                    }
+                    
                 } else {
                     Toast.makeText(Registration.this, "Missing Information", Toast.LENGTH_LONG).show();
 
@@ -165,21 +162,5 @@ public class Registration extends AppCompatActivity {
 
         return !edtTxtRepeatPass.getText().toString().isEmpty();
     }
-    public static String getSecurePassword(String password) throws  NoSuchAlgorithmException {
 
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hash = digest.digest(
-                password.getBytes(StandardCharsets.UTF_8));
-        return bytesToHex(hash);
-    }
-
-    private static String bytesToHex(byte[] hash) {
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hash) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        return hexString.toString();
-    }
 }

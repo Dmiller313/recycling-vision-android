@@ -37,11 +37,11 @@ public class ValidationEmail extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
         final User user;
         user = getIntent().getExtras().getParcelable("User");
-        try {
-            //temp user object until registration is made
+        System.out.println(user.toString());
+        //temp user object until registration is made
 
 
-            //Commented until activity_validationemail is made
+        //Commented until activity_validationemail is made
             /*backButton.findViewById(R.id.back);
 
             backButton.setOnClickListener(new View.OnClickListener(){
@@ -51,44 +51,41 @@ public class ValidationEmail extends AppCompatActivity {
                 }
             });*/
 
-            //Commented until Registration class/activity are made
+        //Commented until Registration class/activity are made
 
             /*Intent intent = getIntent();
             String [] userData = intent.getStringArrayExtra("");
 
             User user = new User(userData[0], userData[1], userData[2], userData[3], userData[4], userData[5]);*/
 
-            RequestQueue queue = Volley.newRequestQueue(this);
+        /*&RequestQueue queue = Volley.newRequestQueue(this);
 
-            String url = "https://recycling-vision.herokuapp.com/emailer";
-            Map<String, String> jsonData = new HashMap<>();
-            jsonData.put("username", user.getUserName());
-            jsonData.put("email", user.getEmail());
-            jsonData.put("password", user.getPassword());
-            jsonData.put("phoneNum", user.getPhoneNum());
-            jsonData.put("postalCode", user.getPostalCode());
-            jsonData.put("dateOfBirth", (user.getDateOfBirth().getYear() + 1900) + "-0" +
-                    (user.getDateOfBirth().getMonth() + 1) + "-" + user.getDateOfBirth().getDate() );
-            JSONObject json = new JSONObject(jsonData);
+        String url = "https://recycling-vision.herokuapp.com/emailer";
+        Map<String, String> jsonData = new HashMap<>();
+        jsonData.put("username", user.getUserName());
+        jsonData.put("email", user.getEmail());
+        jsonData.put("password", user.getPassword());
+        jsonData.put("phoneNum", user.getPhoneNum());
+        jsonData.put("postalCode", user.getPostalCode());
+        jsonData.put("dateOfBirth", (user.getDateOfBirth().getYear() + 1900) + "-0" +
+                (user.getDateOfBirth().getMonth() + 1) + "-" + user.getDateOfBirth().getDate() );
+        JSONObject json = new JSONObject(jsonData);
 
-            JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
 
-                @Override
-                public void onResponse(JSONObject response) {
-                    userMessage.setText(R.string.vemail_success);
-                }
-            }, new Response.ErrorListener() {
+            @Override
+            public void onResponse(JSONObject response) {
+                userMessage.setText(R.string.vemail_success);
+            }
+        }, new Response.ErrorListener() {
 
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    userMessage.setText(R.string.vemail_error);
-                }
-            });
-            queue.add(request);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                userMessage.setText(R.string.vemail_error);
+            }
+        });
+        queue.add(request);*/
 
     }
 }
