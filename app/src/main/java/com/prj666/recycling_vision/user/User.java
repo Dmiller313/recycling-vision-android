@@ -29,7 +29,7 @@ public class User implements Parcelable {
         this.email = email;
         this.password = password;
         this.postalCode = postalCode;
-        this.dateOfBirth = new SimpleDateFormat("yyyy/mm/dd", Locale.CANADA).parse(dateOfBirth);
+        this.dateOfBirth = new SimpleDateFormat("yyyy/MM/dd", Locale.CANADA).parse(dateOfBirth);
         this.validationStatus = validationStatus;
     }
 
@@ -51,6 +51,8 @@ public class User implements Parcelable {
         password = in.readString();
         postalCode = in.readString();
         byte tmpValidationStatus = in.readByte();
+        dateOfBirth = new Date();
+        dateOfBirth.setTime(in.readLong());
         validationStatus = tmpValidationStatus == 0 ? null : tmpValidationStatus == 1;
     }
 
@@ -142,6 +144,7 @@ public class User implements Parcelable {
         dest.writeString(password);
         dest.writeString(postalCode);
         dest.writeByte((byte) (validationStatus == null ? 0 : validationStatus ? 1 : 2));
+        dest.writeLong(dateOfBirth.getTime());
     }
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
