@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".recycling_references.RecyclingReference"/>
+        <activity android:name=".user.PasswordReset" />
+        <activity android:name=".recycling_references.RecyclingReference" />
         <activity android:name=".user.Registration" />
-        <activity android:name=".user.AccountSettings"/>
+        <activity android:name=".user.AccountSettings" />
         <activity android:name=".user.ValidationEmail" />
         <activity android:name=".user.AccountRecovery" />
         <activity android:name=".user.Login" />
