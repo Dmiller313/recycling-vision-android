@@ -1,5 +1,6 @@
 package com.prj666.recycling_vision;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.hardware.camera2.CameraCaptureSession;
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class TakePhoto extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     //insert results screen code here
+                    Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
+                    startActivity(resultOverlay);
                 }
             }, new Response.ErrorListener() {
 
