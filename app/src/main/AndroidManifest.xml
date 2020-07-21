@@ -20,8 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:theme="@style/transparent" android:name=".ResultOverlay"></activity>
-        <activity android:name=".user.PasswordReset" />
+        <activity android:name=".user.PasswordReset"></activity>
+        <activity
+            android:name=".ResultOverlay"
+            android:theme="@style/transparent" />
         <activity android:name=".recycling_references.RecyclingReference" />
         <activity android:name=".user.Registration" />
         <activity android:name=".user.AccountSettings" />

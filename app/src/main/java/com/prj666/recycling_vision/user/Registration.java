@@ -1,13 +1,13 @@
 package com.prj666.recycling_vision.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,21 +17,17 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.prj666.recycling_vision.R;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Registration extends AppCompatActivity {
 
-    static final String salt = "salt";
-    private TextView edtTxtFName, edtTxtLName, edtTxtPassword, edtTxtRepeatPass,
+
+    private TextView edtTxtUserName, edtTxtPassword, edtTxtRepeatPass,
             edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtDate;
     private String validEmail;
 
@@ -45,16 +41,13 @@ public class Registration extends AppCompatActivity {
 
         Button btnRegister = findViewById(R.id.btnRegister);
 
-        edtTxtFName = findViewById(R.id.edtTxtFName);
-        edtTxtLName = findViewById(R.id.edtTxtLName);
+        edtTxtUserName = findViewById(R.id.edtTxtUserName);
         edtTxtPassword = findViewById(R.id.edtTxtPassword);
         edtTxtRepeatPass = findViewById(R.id.edtTxtRepeatPass);
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
         edtTxtPhone = findViewById(R.id.edtTxtPhone);
         edtTxtPostalAddress = findViewById(R.id.edtTxtPostalAddress);
         edtTxtDate = findViewById(R.id.edtTxtDate);
-
-
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -85,82 +78,63 @@ public class Registration extends AppCompatActivity {
                 System.out.println(error.toString());
 
 
-
             }
         });
         queue.add(request);
-
-
-
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(validateData()){
+                if (validateData()) {
 
 
-                  
                     try {
-                        User user = new User(edtTxtFName.getText().toString() + " " + edtTxtLName.getText().toString(),
-                                edtTxtPhone.getText().toString(), edtTxtEmail.getText().toString(), edtTxtPassword.getText().toString(),
-                                edtTxtPostalAddress.getText().toString(), edtTxtDate.getText().toString(), false);
+                        User user = new User(edtTxtUserName.getText().toString(), edtTxtPhone.getText().toString(), edtTxtEmail.getText().toString(),
+                                edtTxtPassword.getText().toString(), edtTxtPostalAddress.getText().toString(),
+                                edtTxtDate.getText().toString(), false);
 
-                        if (validEmail.equals("available")){
+                        if (validEmail.equals("available")) {
                             Intent i = new Intent(getBaseContext(), ValidationEmail.class);
-                            i.putExtra("User",user);
+                            i.putExtra("User", user);
                             startActivity(i);
 
-                        }else {
+                        } else {
                             Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
 
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    
+
                 } else {
                     Toast.makeText(Registration.this, "Missing Information", Toast.LENGTH_LONG).show();
 
                 }
-
-
-
-
-
-
-
-
             }
         });
     }
-
-    private boolean validateData(){
-        if(!edtTxtPassword.getText().toString().equals(edtTxtRepeatPass.getText().toString())){
+    private boolean validateData() {
+        if (!edtTxtPassword.getText().toString().equals(edtTxtRepeatPass.getText().toString()) &&
+                edtTxtPassword.getText().toString().isEmpty() &&
+                edtTxtRepeatPass.getText().toString().isEmpty()) {
             return false;
         }
 
-        if(edtTxtEmail.getText().toString().isEmpty()){
+        if (edtTxtEmail.getText().toString().isEmpty()) {
             return false;
         }
-        if(edtTxtPhone.getText().toString().isEmpty()){
+        if (edtTxtPhone.getText().toString().isEmpty()) {
             return false;
         }
-        if(edtTxtFName.getText().toString().isEmpty()){
-            return false;
-        }
-        if(edtTxtLName.getText().toString().isEmpty()){
-            return false;
-        }
-        if (edtTxtDate.getText().toString().isEmpty()){
-            return false;
-        }
-        if (edtTxtPostalAddress.getText().toString().isEmpty()){
-            return false;
-        }
-        if (edtTxtPassword.getText().toString().isEmpty()){
+        if (edtTxtUserName.getText().toString().isEmpty()) {
             return false;
         }
 
-        return !edtTxtRepeatPass.getText().toString().isEmpty();
+        if (edtTxtDate.getText().toString().isEmpty()) {
+            return false;
+        }
+        if (edtTxtPostalAddress.getText().toString().isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
-
 }
