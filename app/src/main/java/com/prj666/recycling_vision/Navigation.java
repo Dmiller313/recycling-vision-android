@@ -32,10 +32,10 @@ public class Navigation extends AppCompatActivity {
                 takePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
 
-                        //Intent i = new Intent(Navigation.this, TakePhoto.class);
-                        //startActivity(i);
+                        Intent i = new Intent(Navigation.this, TakePhoto.class);
+                        startActivity(i);
                     }
                 });
 

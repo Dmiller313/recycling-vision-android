@@ -6,8 +6,11 @@ import android.hardware.camera2.CameraCaptureSession;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -22,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TakePhoto extends AppCompatActivity {
+public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragment.ConfirmPictureListener {
     private static final int CAMERA_PERMISSION = 1;
     private SurfaceView preview;
     private SurfaceHolder previewHolder;
@@ -34,6 +37,7 @@ public class TakePhoto extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
+        pictureConfirmation();
     }
 
     private void sendPhoto(){//Bitmap photo){
@@ -65,4 +69,21 @@ public class TakePhoto extends AppCompatActivity {
         //}
     }
 
+    private void pictureConfirmation(){
+        FragmentManager fm = getSupportFragmentManager();
+        ConfirmPictureFragment dialog = ConfirmPictureFragment.newInstance("Send photo");
+        dialog.show(fm, "confirm_picture");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Toast.makeText(this, "Works", Toast.LENGTH_SHORT).show();
+        //sendPhoto();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
+        //don't sendPhoto();
+    }
 }
