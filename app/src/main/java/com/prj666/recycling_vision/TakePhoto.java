@@ -1,15 +1,31 @@
 package com.prj666.recycling_vision;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.params.StreamConfigurationMap;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.android.volley.NetworkResponse;
@@ -19,9 +35,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.prj666.recycling_vision.user.Login;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,14 +48,83 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
     private SurfaceView preview;
     private SurfaceHolder previewHolder;
     private CameraCaptureSession camera;
+    private boolean camera2Capable;
     private byte[] img; //temp
     private String filename;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap bmp;
+    private ImageView previewImage;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
-        pictureConfirmation();
+        previewImage = findViewById(R.id.image_preview);
+        Button takePhoto = findViewById(R.id.takephoto);
+        final Button sendPhoto = findViewById(R.id.sendphoto);
+        Button back = findViewById(R.id.back_takephoto);
+        ActivityCompat.requestPermissions(this, new String[]{"android.permission.CAMERA"}, 1);
+
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ContextCompat.checkSelfPermission(TakePhoto.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    takePicture();
+                }
+                else{
+                    ActivityCompat.requestPermissions(TakePhoto.this, new String[]{"android.permission.CAMERA"}, 1);
+                    if(ContextCompat.checkSelfPermission(TakePhoto.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        takePicture();
+                    }
+                    else{
+                        Toast.makeText(TakePhoto.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        sendPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bmp != null){
+                    pictureConfirmation();
+                }
+                else{
+                    Toast.makeText(TakePhoto.this, "Please take a photo first", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        //takePicture();
+        //pictureConfirmation();
+    }
+
+    private void takePicture(){
+        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(i.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(i, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            if(bmp != null){
+                bmp.recycle();
+            }
+            Bundle extras = data.getExtras();
+            bmp = (Bitmap) extras.get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            previewImage.setImageBitmap(bmp);
+            img = stream.toByteArray();
+        }
     }
 
     private void sendPhoto(){//Bitmap photo){
@@ -78,6 +165,7 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         Toast.makeText(this, "Works", Toast.LENGTH_SHORT).show();
+        sendPhoto();
         //sendPhoto();
     }
 
@@ -86,4 +174,75 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
         Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
         //don't sendPhoto();
     }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1) {
+            if (grantResults.length <= 0 || grantResults[0] != 0) {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(this, Navigation.class));
+        finishAffinity();
+    }
+/*
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    protected void setCameraFragment() {
+        String camera = chooseCamera();
+
+        Fragment fragment;
+        if(camera2Capable){
+
+        }
+        else{
+
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private String chooseCamera(){
+        final CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        try {
+            int length = manager.getCameraIdList().length;
+            boolean proceed = true;
+            int selectedCamera = 0;
+            for (int i = 0; i < length; i++){
+                final CameraCharacteristics characteristics = manager.getCameraCharacteristics(manager.getCameraIdList()[i]);
+
+                final Integer direction = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if(direction != null && direction == CameraCharacteristics.LENS_FACING_FRONT && proceed){
+                    i = length;
+                    proceed = false;
+                    selectedCamera = i;
+                }
+
+                final StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+
+                if(map == null && proceed){
+                    i = length;
+                    proceed = false;
+                    selectedCamera = i;
+                }
+
+                camera2Capable = direction == CameraCharacteristics.LENS_FACING_EXTERNAL ||
+                        getHardwareSupportLevel(characteristics, CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
+            }
+            return manager.getCameraIdList()[selectedCamera];
+        } catch (CameraAccessException e) {
+            Toast.makeText(this, "Cannot access camera", Toast.LENGTH_SHORT).show();
+        }
+        return null;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private boolean getHardwareSupportLevel(CameraCharacteristics c, int required){
+        int device = c.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
+        if(device == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY){
+            return required == device;
+        }
+        return required <= device;
+    }
+*/
 }
