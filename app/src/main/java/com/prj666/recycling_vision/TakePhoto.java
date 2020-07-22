@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,7 +27,8 @@ public class TakePhoto extends AppCompatActivity {
     private SurfaceView preview;
     private SurfaceHolder previewHolder;
     private CameraCaptureSession camera;
-    static Bitmap bmp;
+    private byte[] img; //temp
+    private String filename;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState){
@@ -43,11 +45,11 @@ public class TakePhoto extends AppCompatActivity {
 
             JSONObject json = new JSONObject(jsonData);
 
-            JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
+            MultipartRequest request = new MultipartRequest(
+                    Request.Method.POST, url, jsonData, filename, img, new Response.Listener<NetworkResponse>() {
 
                 @Override
-                public void onResponse(JSONObject response) {
+                public void onResponse(NetworkResponse response) {
                     //insert results screen code here
                     Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
                     startActivity(resultOverlay);
