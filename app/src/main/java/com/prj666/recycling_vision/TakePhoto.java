@@ -127,33 +127,33 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
         }
     }
 
-    private void sendPhoto(){//Bitmap photo){
-        //if(photo.isTaken()){
-            RequestQueue queue = Volley.newRequestQueue(this);
+    private void sendPhoto(){
+        RequestQueue queue = Volley.newRequestQueue(this);
 
-            String url = "https://rv-tensorflow.herokuapp.com/upload";
-            Map<String, String> jsonData = new HashMap<>();
+        String url = "https://rv-tensorflow.herokuapp.com/upload";
+        Map<String, String> jsonData = new HashMap<>();
 
-            JSONObject json = new JSONObject(jsonData);
+        JSONObject json = new JSONObject(jsonData);
+        //TODO: Add processing wait screen Threading + fragment
+        //startActivity(resultOverlay) must be a blocked thread before processing is done
+        MultipartRequest request = new MultipartRequest(
+                Request.Method.POST, url, jsonData, filename, img, new Response.Listener<NetworkResponse>() {
 
-            MultipartRequest request = new MultipartRequest(
-                    Request.Method.POST, url, jsonData, filename, img, new Response.Listener<NetworkResponse>() {
+            @Override
+            public void onResponse(NetworkResponse response) {
+                //insert results screen code here
 
-                @Override
-                public void onResponse(NetworkResponse response) {
-                    //insert results screen code here
-                    Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
-                    startActivity(resultOverlay);
-                }
-            }, new Response.ErrorListener() {
+                Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
+                startActivity(resultOverlay);
+            }
+        }, new Response.ErrorListener() {
 
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    //TODO: image sending error code goes here
-                }
-            });
-            queue.add(request);
-        //}
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //TODO: image sending error code goes here
+            }
+        });
+        queue.add(request);
     }
 
     private void pictureConfirmation(){
