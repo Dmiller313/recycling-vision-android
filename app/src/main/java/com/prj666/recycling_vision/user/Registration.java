@@ -50,46 +50,48 @@ public class Registration extends AppCompatActivity {
         edtTxtDate = findViewById(R.id.edtTxtDate);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-
-        String url = "https://recycling-vision.herokuapp.com/exists";
-        Map<String, String> jsonData = new HashMap<>();
-        jsonData.put("email", edtTxtEmail.getText().toString());
-
-        JSONObject json = new JSONObject(jsonData);
-
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, url, json, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                System.out.println(response.toString());
-                try {
-                    validEmail = response.getString("status");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error.toString());
-
-
-            }
-        });
-        queue.add(request);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validateData()) {
+
 
 
                     try {
                         User user = new User(edtTxtUserName.getText().toString(), edtTxtPhone.getText().toString(), edtTxtEmail.getText().toString(),
                                 edtTxtPassword.getText().toString(), edtTxtPostalAddress.getText().toString(),
                                 edtTxtDate.getText().toString(), false);
+
+
+                        String url = "https://recycling-vision.herokuapp.com/exists";
+                        Map<String, String> jsonData = new HashMap<>();
+                        jsonData.put("email", edtTxtEmail.getText().toString());
+
+                        JSONObject json = new JSONObject(jsonData);
+
+                        JsonObjectRequest request = new JsonObjectRequest(
+                                Request.Method.GET, url, json, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                System.out.println(response.toString());
+                                try {
+                                    validEmail = response.getString("status");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                System.out.println(error.toString());
+
+
+                            }
+                        });
+                        queue.add(request);
 
                         if (validEmail.equals("available")) {
                             Intent i = new Intent(getBaseContext(), ValidationEmail.class);
