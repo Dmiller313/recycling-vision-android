@@ -47,4 +47,5 @@
     <string name="analyze_photo">Analyze Photo</string>
     <string name="back">Back</string>
     <string name="image_preview">image-preview</string>
+    <string name="processing">Now processing...</string>
 </resources>

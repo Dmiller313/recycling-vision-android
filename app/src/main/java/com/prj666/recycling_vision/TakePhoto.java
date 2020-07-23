@@ -7,10 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.params.StreamConfigurationMap;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -36,7 +33,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.prj666.recycling_vision.user.Login;
+
 
 import org.json.JSONObject;
 
@@ -47,7 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.BlockingQueue;
+
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -61,9 +58,9 @@ import okhttp3.Response;
 
 public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragment.ConfirmPictureListener {
     private static final int CAMERA_PERMISSION = 1;
-    private SurfaceView preview;
-    private SurfaceHolder previewHolder;
-    private CameraCaptureSession camera;
+    //private SurfaceView preview;
+    //private SurfaceHolder previewHolder;
+    //private CameraCaptureSession camera;
     private boolean camera2Capable;
     private byte[] img; //temp
     private String filename;
