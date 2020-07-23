@@ -1,3 +1,7 @@
+package com.prj666.recycling_vision;
+
+import android.graphics.Bitmap;
+
 public class IdentifiedObject
 {
     private int objectID;

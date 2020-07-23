@@ -62,7 +62,7 @@ public class MultipartRequest extends Request<NetworkResponse> {
         try {
             data.writeBytes("--" + Long.toHexString(System.currentTimeMillis()) +
                     "\nContent-disposition: form-data; name=\"file\"; filename=\"" + filename + //may need to manually get file type from user
-                    "\"\nContent-type: image/jpeg\n\n");
+                    "\"\nContent-type: multipart/formdata\nConnection: keep-alive\n\n");
             data.write(img);
             data.writeBytes("\n--" + Long.toHexString(System.currentTimeMillis()) + "\n"); //all new lines may need \r as well?
             return baos.toByteArray();

@@ -12,6 +12,7 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -28,10 +29,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
+
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -40,8 +41,23 @@ import com.prj666.recycling_vision.user.Login;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragment.ConfirmPictureListener {
     private static final int CAMERA_PERMISSION = 1;
@@ -64,7 +80,7 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
         Button takePhoto = findViewById(R.id.takephoto);
         final Button sendPhoto = findViewById(R.id.sendphoto);
         Button back = findViewById(R.id.back_takephoto);
-        ActivityCompat.requestPermissions(this, new String[]{"android.permission.CAMERA"}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
 
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +89,7 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                     takePicture();
                 }
                 else{
-                    ActivityCompat.requestPermissions(TakePhoto.this, new String[]{"android.permission.CAMERA"}, 1);
+                    ActivityCompat.requestPermissions(TakePhoto.this, new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                     if(ContextCompat.checkSelfPermission(TakePhoto.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         takePicture();
                     }
@@ -124,25 +140,63 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             previewImage.setImageBitmap(bmp);
             img = stream.toByteArray();
+            File storage = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            try {
+                File image = File.createTempFile("rv-photo_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), ".jpg", storage);
+                filename = image.getAbsolutePath();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void sendPhoto(){
+    private void sendPhoto() throws IOException {
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://rv-tensorflow.herokuapp.com/upload";
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                String url = "https://rv-tensorflow.herokuapp.com/upload";
+                OkHttpClient client = new OkHttpClient().newBuilder().readTimeout(60, TimeUnit.SECONDS).build();
+                MediaType mediaType = MediaType.parse("text/plain");
+                RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("file",filename,
+                        RequestBody.create(MediaType.parse("application/octet-stream"), new File(filename))).build();
+                Request request = new Request.Builder()
+                        .url(url)
+                        .method("POST", body)
+                        .addHeader("Cookie", "session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlByb2Nlc3NpbmcgaW1hZ2UiXX1dfQ.XxjL4Q.mwnXeLa0w0-sWt-HOCbknuX63j8")
+                        .build();
+                Response response = null;
+                try {
+                    response = client.newCall(request).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(response.isSuccessful()){
+                    Toast.makeText(TakePhoto.this, "GOOD", Toast.LENGTH_SHORT).show();
+                    Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
+                    startActivity(resultOverlay);
+                }
+            }
+        };
+
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(2, 5, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
+        threadPool.execute(runnable);
         Map<String, String> jsonData = new HashMap<>();
 
         JSONObject json = new JSONObject(jsonData);
         //TODO: Add processing wait screen Threading + fragment
         //startActivity(resultOverlay) must be a blocked thread before processing is done
-        MultipartRequest request = new MultipartRequest(
+
+
+
+        /*MultipartRequest request = new MultipartRequest(
                 Request.Method.POST, url, jsonData, filename, img, new Response.Listener<NetworkResponse>() {
 
             @Override
             public void onResponse(NetworkResponse response) {
                 //insert results screen code here
-
+                System.out.println("WORKS");
                 Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
                 startActivity(resultOverlay);
             }
@@ -151,9 +205,12 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             @Override
             public void onErrorResponse(VolleyError error) {
                 //TODO: image sending error code goes here
+                System.out.println("DOESN'T WORK");
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(60000, 3, 3.0f));
         queue.add(request);
+        System.out.println("END");*/
     }
 
     private void pictureConfirmation(){
@@ -163,7 +220,7 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onDialogPositiveClick(DialogFragment dialog) throws IOException {
         Toast.makeText(this, "Works", Toast.LENGTH_SHORT).show();
         sendPhoto();
         //sendPhoto();

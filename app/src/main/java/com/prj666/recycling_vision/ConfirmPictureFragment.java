@@ -14,9 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import java.io.IOException;
+
 public class ConfirmPictureFragment extends DialogFragment {
     public interface ConfirmPictureListener{
-        public void onDialogPositiveClick(DialogFragment dialog);
+        public void onDialogPositiveClick(DialogFragment dialog) throws IOException;
         public void onDialogNegativeClick(DialogFragment dialog);
     }
 
@@ -75,7 +77,11 @@ public class ConfirmPictureFragment extends DialogFragment {
         builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                listener.onDialogPositiveClick(ConfirmPictureFragment.this);
+                try {
+                    listener.onDialogPositiveClick(ConfirmPictureFragment.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         builder.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
