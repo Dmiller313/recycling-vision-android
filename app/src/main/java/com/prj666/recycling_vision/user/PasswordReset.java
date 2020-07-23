@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -69,6 +70,8 @@ public class PasswordReset extends AppCompatActivity {
                     }
                 });
                 queue.add(request);
+                Intent login = new Intent(PasswordReset.this, Login.class);
+                PasswordReset.this.startActivity(login);
             }
         });
     }
