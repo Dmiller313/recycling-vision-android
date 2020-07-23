@@ -1,4 +1,4 @@
-package com.prj666.recycling_vision.user;
+package com.example.prj666_login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.prj666.recycling_vision.Navigation;
-import com.prj666.recycling_vision.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +32,7 @@ public class Login extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
