@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
@@ -63,6 +64,8 @@ public class AccountSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //launch the password reset activity
+                Intent reset = new Intent(AccountSettings.this, PasswordReset.class);
+                AccountSettings.this.startActivity(reset);
             }
         });
 

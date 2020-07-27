@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ResultOverlay"></activity>
         <activity
             android:name=".Navigation"
             android:theme="@style/SplashTheme">
@@ -29,10 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".user.PasswordReset"></activity>
-        <activity
-            android:name=".ResultOverlay"
-            android:theme="@style/transparent" />
+        <activity android:name=".user.PasswordReset" />
         <activity android:name=".recycling_references.RecyclingReference" />
         <activity android:name=".user.Registration" />
         <activity android:name=".user.AccountSettings" />
