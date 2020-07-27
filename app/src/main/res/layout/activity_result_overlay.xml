@@ -1,18 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ResultOverlay">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:fontFamily="serif"
-        android:text="Message"
-        android:textColor="#000000"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-</RelativeLayout>
+        android:id="@+id/textViewMatchResult"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:text="Match Found!"
+        android:gravity="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginBottom="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMatchResult"
+        tools:layout_editor_absoluteX="0dp"
+        tools:srcCompat="@tools:sample/avatars[2]" />
+
+    <LinearLayout
+        android:layout_width="382dp"
+        android:layout_height="272dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <TextView
+            android:id="@+id/textViewObjectName"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:gravity="center"
+            android:text="Object Name"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/text123"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Incorrect Identification?"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/ic_button"
+            android:text="Edit Name" />
+
+        <TextView
+            android:id="@+id/textViewMatchProb"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:gravity="center"
+            android:text="%Match"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
