@@ -76,6 +76,15 @@ public class Registration extends AppCompatActivity {
                                 System.out.println(response.toString());
                                 try {
                                     validEmail = response.getString("status");
+                                    if (validEmail.equals("available")) {
+                                        Intent i = new Intent(getBaseContext(), ValidationEmail.class);
+                                        i.putExtra("User", user);
+                                        startActivity(i);
+
+                                    } else {
+                                        Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
+
+                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -92,16 +101,6 @@ public class Registration extends AppCompatActivity {
                             }
                         });
                         queue.add(request);
-
-                        if (validEmail.equals("available")) {
-                            Intent i = new Intent(getBaseContext(), ValidationEmail.class);
-                            i.putExtra("User", user);
-                            startActivity(i);
-
-                        } else {
-                            Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
-
-                        }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
