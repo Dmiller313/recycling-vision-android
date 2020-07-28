@@ -40,14 +40,15 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:padding="1dp"
+            android:padding="2dp"
             android:background="#DDDDDD"
             android:gravity="center"
             android:contentDescription="@string/image_preview" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="150dp">
+            android:paddingTop="150dp"
+            style="?android:attr/buttonBarStyle">
             <Button
                 android:id="@+id/takephoto"
                 android:layout_width="wrap_content"
@@ -59,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="@string/analyze_photo"/>
+                android:text="@string/analyze_photo" />
         </LinearLayout>
         <Button
             android:id="@+id/back_takephoto"

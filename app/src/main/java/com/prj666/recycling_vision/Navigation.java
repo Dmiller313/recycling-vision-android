@@ -11,10 +11,18 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.prj666.recycling_vision.recycling_references.RecyclingReference;
 import com.prj666.recycling_vision.user.AccountSettings;
 import com.prj666.recycling_vision.user.Login;
 import com.prj666.recycling_vision.user.Settings;
+
+import org.json.JSONObject;
 
 public class Navigation extends AppCompatActivity {
 
@@ -23,6 +31,44 @@ public class Navigation extends AppCompatActivity {
         setTheme(R.style.AppTheme); //Display loading screen
         super.onCreate(savedInstanceState);
         //if(TOU.accepted){
+            String url = "https://recycling-vision.herokuapp.com/recyclingmessage/single";
+            String tfUrl = "https://rv-tensorflow.herokuapp.com/";
+            RequestQueue queue = Volley.newRequestQueue(this);
+
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    System.out.println("connection established");
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println("service unavailable");
+                    System.out.println(error.toString());
+                }
+            });
+            queue.add(request);
+
+            JsonObjectRequest tfRequest = new JsonObjectRequest(
+                    Request.Method.GET, tfUrl, null, new Response.Listener<JSONObject>() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    System.out.println("connection established to TF");
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println("TF service unavailable");
+                    System.out.println(error.toString());
+                }
+            });
+            queue.add(tfRequest);
+
             if(Login.isUserLoggedIn()){
                 setContentView(R.layout.activity_navigation);
                 Button takePhoto = findViewById(R.id.takephoto);

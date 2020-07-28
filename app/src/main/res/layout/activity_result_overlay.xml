@@ -10,7 +10,7 @@
         android:id="@+id/textViewMatchResult"
         android:layout_width="match_parent"
         android:layout_height="68dp"
-        android:text="Match Found!"
+        android:text="@string/match_found"
         android:gravity="center"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="74dp"
             android:gravity="center"
-            android:text="Object Name"
+            android:text="@string/object_name"
             android:textSize="18sp" />
 
         <TextView
@@ -50,8 +50,17 @@
             android:layout_height="20dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="Incorrect Identification?"
+            android:text="@string/incorrect_identification"
             android:textSize="18sp" />
+
+        <!--TODO: add back button -->
+        <!--TODO: format recycling instructions properly -->
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/button"
@@ -59,14 +68,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:background="@drawable/ic_button"
-            android:text="Edit Name" />
+            android:text="@string/edit_name" />
 
         <TextView
             android:id="@+id/textViewMatchProb"
             android:layout_width="match_parent"
             android:layout_height="88dp"
             android:gravity="center"
-            android:text="%Match"
+            android:text="@string/match"
             android:textSize="18sp" />
 
 

@@ -48,4 +48,9 @@
     <string name="back">Back</string>
     <string name="image_preview">image-preview</string>
     <string name="processing">Now processing...</string>
+    <string name="match_found">Match Found!</string>
+    <string name="object_name">Object Name</string>
+    <string name="incorrect_identification">Incorrect Identification?</string>
+    <string name="edit_name">Edit Name</string>
+    <string name="match">%Match</string>
 </resources>
