@@ -53,4 +53,7 @@
     <string name="incorrect_identification">Incorrect Identification?</string>
     <string name="edit_name">Edit Name</string>
     <string name="match">%Match</string>
+    <string name="instructions">Instructions</string>
+    <string name="go_back">Go Back</string>
+    <string name="todo">TODO</string>
 </resources>

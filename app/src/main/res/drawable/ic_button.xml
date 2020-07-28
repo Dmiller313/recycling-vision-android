@@ -1,26 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-    <item android:state_pressed="true" >
-        <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#5e7974" />
-            <gradient android:angle="-90" android:startColor="#345953" android:endColor="#689a92"  />
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#5e7974" />
-            <solid android:color="#58857e"/>
-        </shape>
-    </item>
-    <item >
-        <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#5e7974" />
-            <gradient android:angle="-90" android:startColor="#8dbab3" android:endColor="#58857e" />
-        </shape>
-    </item>
-</selector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="129dp"
+    android:height="35.285dp"
+    android:viewportWidth="129"
+    android:viewportHeight="35.285">
+    <path
+        android:strokeWidth="1"
+        android:pathData="M128.5,22.785c0,6.627 -5.373,12 -12,12h-104c-6.627,0 -12,-5.373 -12,-12V12.5c0,-6.627 5.373,-12 12,-12h104c6.627,0 12,5.373 12,12V22.785z"
+        android:fillColor="#3257A8"
+        />
+</vector>
