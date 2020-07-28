@@ -134,7 +134,9 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             Bundle extras = data.getExtras();
             bmp = (Bitmap) extras.get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            bmp = Bitmap.createScaledBitmap(bmp, 512, 512, true);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+
             previewImage.setImageBitmap(bmp);
             img = stream.toByteArray();
             File storage = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -154,25 +156,31 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             @Override
             public void run() {
                 String url = "https://rv-tensorflow.herokuapp.com/upload";
+
                 OkHttpClient client = new OkHttpClient().newBuilder().readTimeout(60, TimeUnit.SECONDS).build();
-                MediaType mediaType = MediaType.parse("text/plain");
-                RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("file",filename,
-                        RequestBody.create(MediaType.parse("application/octet-stream"), new File(filename))).build();
+                RequestBody body = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("file",filename, RequestBody.create(MediaType.parse("image/jpeg"), img))
+                         .build();
                 Request request = new Request.Builder()
                         .url(url)
-                        .method("POST", body)
-                        .addHeader("Cookie", "session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlByb2Nlc3NpbmcgaW1hZ2UiXX1dfQ.XxjL4Q.mwnXeLa0w0-sWt-HOCbknuX63j8")
+                        .post(body)
                         .build();
                 Response response = null;
+                System.out.println("alright");
                 try {
                     response = client.newCall(request).execute();
+                    System.out.println("executing");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 if(response.isSuccessful()){
-                    Toast.makeText(TakePhoto.this, "GOOD", Toast.LENGTH_SHORT).show();
+                    System.out.println("good");
                     Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
                     startActivity(resultOverlay);
+                }
+                else{
+                    System.out.println("no response from server in time");
                 }
             }
         };
