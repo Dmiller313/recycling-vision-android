@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.prj666.recycling_vision.LogoutDialogFragment;
 import com.prj666.recycling_vision.R;
 
 import java.io.BufferedReader;
@@ -64,8 +64,6 @@ public class AccountSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //launch the password reset activity
-                Intent reset = new Intent(AccountSettings.this, PasswordReset.class);
-                AccountSettings.this.startActivity(reset);
             }
         });
 
@@ -111,7 +109,7 @@ public class AccountSettings extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //display logout confirmation dialog
+                new LogoutDialogFragment().show(getSupportFragmentManager(), "logout_dialog");
             }
         });
     }
