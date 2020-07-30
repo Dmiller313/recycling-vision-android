@@ -12,7 +12,7 @@
         android:layout_width="89dp"
         android:layout_height="49dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Date Of Birth:"
         android:textColor="@color/Black"
         android:textSize="18sp"
@@ -26,7 +26,7 @@
         android:layout_width="112dp"
         android:layout_height="34dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Postal Code:"
         android:textColor="@color/Black"
         android:textSize="18sp"
@@ -40,7 +40,7 @@
         android:layout_width="85dp"
         android:layout_height="29dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Email:"
         android:textColor="@color/Black"
         android:textSize="18sp"
@@ -52,7 +52,7 @@
         android:layout_width="89dp"
         android:layout_height="41dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Re-Enter Password:"
         android:textColor="@color/Black"
         android:textSize="18sp"
@@ -66,7 +66,7 @@
         android:layout_width="86dp"
         android:layout_height="23dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Password:"
         android:textColor="@color/Black"
         android:textSize="18sp"
@@ -79,7 +79,7 @@
         android:layout_width="82dp"
         android:layout_height="31dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Phone:"
         android:textColor="@color/Black"
         android:textSize="18sp"
@@ -91,7 +91,7 @@
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="match_parent"
-        android:layout_height="126dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/ic_recycling_vision_logo2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,12 +116,12 @@
         android:layout_width="88dp"
         android:layout_height="28dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Username:"
+        android:textColor="@color/Black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-        android:textColor="@color/Black" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
     <EditText
         android:id="@+id/edtTxtUserName"
@@ -215,7 +215,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtPostalAddress"
         app:layout_constraintStart_toStartOf="@+id/edtTxtPostalAddress"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="@+id/textView8"
+        android:maxLength="10"/>
 
     <Button
         android:id="@+id/btnRegister"
@@ -238,5 +239,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="89dp"
+        android:layout_height="21dp"
+        android:text="YYYY/MM/DD"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        android:textColor="@color/Black"
+        android:textSize="14sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

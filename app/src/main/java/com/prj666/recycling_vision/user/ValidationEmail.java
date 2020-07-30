@@ -39,7 +39,6 @@ public class ValidationEmail extends AppCompatActivity {
 
         final User user;
         user = getIntent().getExtras().getParcelable("User");
-        System.out.println(user.toString());
 
         backButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

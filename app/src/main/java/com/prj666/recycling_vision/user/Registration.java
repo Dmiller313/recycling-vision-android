@@ -69,11 +69,10 @@ public class Registration extends AppCompatActivity {
                         JSONObject json = new JSONObject(jsonData);
 
                         JsonObjectRequest request = new JsonObjectRequest(
-                                Request.Method.GET, url, json, new Response.Listener<JSONObject>() {
+                            Request.Method.GET, url, json, new Response.Listener<JSONObject>() {
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                System.out.println(response.toString());
                                 try {
                                     validEmail = response.getString("status");
                                     if (validEmail.equals("available")) {
@@ -82,8 +81,8 @@ public class Registration extends AppCompatActivity {
                                         startActivity(i);
 
                                     } else {
-                                        Toast.makeText(Registration.this, "A user has already used this email address", Toast.LENGTH_LONG).show();
-
+                                        System.out.println("A user has already used this email address");
+                                        Toast.makeText(getApplicationContext(), "A user has already used this email address", Toast.LENGTH_LONG).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -95,7 +94,8 @@ public class Registration extends AppCompatActivity {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                System.out.println(error.toString());
+                                //Toast.makeText(getApplicationContext(), "A user has already used this email address", Toast.LENGTH_LONG).show();
+
 
 
                             }
@@ -113,22 +113,26 @@ public class Registration extends AppCompatActivity {
         });
     }
     private boolean validateData() {
-        if (!edtTxtPassword.getText().toString().equals(edtTxtRepeatPass.getText().toString()) &&
-                edtTxtPassword.getText().toString().isEmpty() &&
-                edtTxtRepeatPass.getText().toString().isEmpty() &&
-                !edtTxtRepeatPass.getText().toString().matches(PASSWORD_PATTERN)) {
+        if (edtTxtPassword.getText().toString().isEmpty() ||
+                edtTxtRepeatPass.getText().toString().isEmpty() ||
+                !(edtTxtRepeatPass.getText().toString().matches(PASSWORD_PATTERN))) {
             Toast.makeText(getApplicationContext(), "Invalid Password, Must contain at least 1 digit, 1 lower case letter, 1 uppercase letter, 1 special character and" +
                             " be more than 8 characters",
                     Toast.LENGTH_LONG).show();
             return false;
         }
+        if(!(edtTxtPassword.getText().toString().equals(edtTxtRepeatPass.getText().toString()))){
+            Toast.makeText(getApplicationContext(), "Passwords don't match",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
 
-        if (edtTxtEmail.getText().toString().isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(edtTxtEmail.getText().toString()).matches()) {
+        if (edtTxtEmail.getText().toString().isEmpty() || !(Patterns.EMAIL_ADDRESS.matcher(edtTxtEmail.getText().toString()).matches())) {
             Toast.makeText(getApplicationContext(), "Invalid email", Toast.LENGTH_LONG).show();
 
             return false;
         }
-        if (edtTxtPhone.getText().toString().isEmpty()) {
+        if (edtTxtPhone.getText().toString().isEmpty() || !(edtTxtPhone.getText().toString().length() == 10)) {
             Toast.makeText(getApplicationContext(), "Invalid phone", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -137,12 +141,12 @@ public class Registration extends AppCompatActivity {
             return false;
         }
 
-        if (edtTxtDate.getText().toString().isEmpty()) {
+        if (edtTxtDate.getText().toString().isEmpty() || !(edtTxtDate.getText().toString().length() == 10)) {
             Toast.makeText(getApplicationContext(), "Invalid Date", Toast.LENGTH_LONG).show();
 
             return false;
         }
-        if (edtTxtPostalAddress.getText().toString().isEmpty() ) {
+        if (edtTxtPostalAddress.getText().toString().isEmpty() || !(edtTxtPostalAddress.getText().toString().length() == 6)) {
             Toast.makeText(getApplicationContext(), "Invalid Postal Code", Toast.LENGTH_LONG).show();
             return false;
         }
