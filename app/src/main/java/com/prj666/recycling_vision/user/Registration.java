@@ -2,6 +2,7 @@ package com.prj666.recycling_vision.user;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,10 +24,11 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity {
 
-
+    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
     private TextView edtTxtUserName, edtTxtPassword, edtTxtRepeatPass,
             edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtDate;
     private String validEmail;
@@ -115,24 +117,36 @@ public class Registration extends AppCompatActivity {
     private boolean validateData() {
         if (!edtTxtPassword.getText().toString().equals(edtTxtRepeatPass.getText().toString()) &&
                 edtTxtPassword.getText().toString().isEmpty() &&
-                edtTxtRepeatPass.getText().toString().isEmpty()) {
+                edtTxtRepeatPass.getText().toString().isEmpty() &&
+                !edtTxtRepeatPass.getText().toString().matches(PASSWORD_PATTERN)) {
+            Toast.makeText(Registration.this, "Invalid Password, Must contain at least 1 digit, 1 lower case letter, 1 uppercase letter, 1 special character and" +
+                            " be more than 8 characters",
+                    Toast.LENGTH_LONG).show();
             return false;
         }
 
-        if (edtTxtEmail.getText().toString().isEmpty()) {
+        if (edtTxtEmail.getText().toString().isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(edtTxtEmail.getText().toString()).matches()) {
+            Toast.makeText(Registration.this, "Invalid email", Toast.LENGTH_LONG).show();
+
             return false;
         }
         if (edtTxtPhone.getText().toString().isEmpty()) {
+            Toast.makeText(Registration.this, "Invalid phone", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (edtTxtUserName.getText().toString().isEmpty()) {
+        if (edtTxtUserName.getText().toString().isEmpty() &&
+        !(edtTxtUserName.getText().toString().length() <= 32) ) {
+            Toast.makeText(Registration.this, "Invalid Username", Toast.LENGTH_LONG).show();
             return false;
         }
 
         if (edtTxtDate.getText().toString().isEmpty()) {
+            Toast.makeText(Registration.this, "Invalid Date", Toast.LENGTH_LONG).show();
+
             return false;
         }
-        if (edtTxtPostalAddress.getText().toString().isEmpty()) {
+        if (edtTxtPostalAddress.getText().toString().isEmpty() ) {
+            Toast.makeText(Registration.this, "Invalid Postal Code", Toast.LENGTH_LONG).show();
             return false;
         }
 

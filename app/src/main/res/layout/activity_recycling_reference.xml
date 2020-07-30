@@ -4,34 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5d5c61"
     tools:context=".recycling_references.RecyclingReference">
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:text="@string/references"
-        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textColor="#00263c"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ImageView
         android:id="@+id/referenceLink"
-        android:layout_width="241dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/city_of_toronto_website"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:layout_width="343dp"
+        android:layout_height="260dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/toronto_logo" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="288dp"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:text="Click On Image to Visit City of Toronto Website"
+        android:textColor="#00263c"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/referenceLink"
+        app:layout_constraintStart_toStartOf="@+id/referenceLink"
+        app:layout_constraintTop_toBottomOf="@+id/referenceLink" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
