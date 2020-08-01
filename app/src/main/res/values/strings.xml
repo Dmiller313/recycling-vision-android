@@ -57,4 +57,6 @@
     <string name="go_back">Go Back</string>
     <string name="todo">TODO</string>
     <string name="terms_of_use">TERMS OF USE</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
 </resources>

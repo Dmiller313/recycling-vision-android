@@ -1,38 +1,25 @@
 package com.prj666.recycling_vision;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCaptureSession;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 
@@ -58,11 +45,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragment.ConfirmPictureListener {
-    private static final int CAMERA_PERMISSION = 1;
-    //private SurfaceView preview;
-    //private SurfaceHolder previewHolder;
-    //private CameraCaptureSession camera;
-    private boolean camera2Capable;
     private byte[] img; //temp
     private String filename;
 
@@ -114,8 +96,6 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                 onBackPressed();
             }
         });
-        //takePicture();
-        //pictureConfirmation();
     }
 
     private void takePicture(){
@@ -196,32 +176,6 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
         Map<String, String> jsonData = new HashMap<>();
 
         JSONObject json = new JSONObject(jsonData);
-        //TODO: Add processing wait screen Threading + fragment
-        //startActivity(resultOverlay) must be a blocked thread before processing is done
-
-
-
-        /*MultipartRequest request = new MultipartRequest(
-                Request.Method.POST, url, jsonData, filename, img, new Response.Listener<NetworkResponse>() {
-
-            @Override
-            public void onResponse(NetworkResponse response) {
-                //insert results screen code here
-                System.out.println("WORKS");
-                Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
-                startActivity(resultOverlay);
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //TODO: image sending error code goes here
-                System.out.println("DOESN'T WORK");
-            }
-        });
-        request.setRetryPolicy(new DefaultRetryPolicy(60000, 3, 3.0f));
-        queue.add(request);
-        System.out.println("END");*/
     }
 
     private void pictureConfirmation(){
@@ -232,15 +186,12 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) throws IOException {
-        Toast.makeText(this, "Works", Toast.LENGTH_SHORT).show();
         sendPhoto();
-        //sendPhoto();
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
-        Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
-        //don't sendPhoto();
+
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -255,62 +206,4 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
         startActivity(new Intent(this, Navigation.class));
         finishAffinity();
     }
-/*
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    protected void setCameraFragment() {
-        String camera = chooseCamera();
-
-        Fragment fragment;
-        if(camera2Capable){
-
-        }
-        else{
-
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private String chooseCamera(){
-        final CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        try {
-            int length = manager.getCameraIdList().length;
-            boolean proceed = true;
-            int selectedCamera = 0;
-            for (int i = 0; i < length; i++){
-                final CameraCharacteristics characteristics = manager.getCameraCharacteristics(manager.getCameraIdList()[i]);
-
-                final Integer direction = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if(direction != null && direction == CameraCharacteristics.LENS_FACING_FRONT && proceed){
-                    i = length;
-                    proceed = false;
-                    selectedCamera = i;
-                }
-
-                final StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-
-                if(map == null && proceed){
-                    i = length;
-                    proceed = false;
-                    selectedCamera = i;
-                }
-
-                camera2Capable = direction == CameraCharacteristics.LENS_FACING_EXTERNAL ||
-                        getHardwareSupportLevel(characteristics, CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
-            }
-            return manager.getCameraIdList()[selectedCamera];
-        } catch (CameraAccessException e) {
-            Toast.makeText(this, "Cannot access camera", Toast.LENGTH_SHORT).show();
-        }
-        return null;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private boolean getHardwareSupportLevel(CameraCharacteristics c, int required){
-        int device = c.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
-        if(device == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY){
-            return required == device;
-        }
-        return required <= device;
-    }
-*/
 }
