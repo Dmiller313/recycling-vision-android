@@ -2,7 +2,9 @@ package com.prj666.recycling_vision;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -21,12 +23,21 @@ import java.util.Map;
 
 public class ResultOverlay extends AppCompatActivity {
 
+
+    private ImageView image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_overlay);
 
         final TextView tv = findViewById(R.id.instructions);
+
+        Bundle extras = getIntent().getExtras();
+        Bitmap bmp = (Bitmap) extras.getParcelable("image");
+
+        image.setImageBitmap(bmp);
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
 

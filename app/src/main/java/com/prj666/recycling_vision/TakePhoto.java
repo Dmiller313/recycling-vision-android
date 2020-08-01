@@ -10,6 +10,7 @@ import android.hardware.camera2.CameraCaptureSession;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -176,7 +177,12 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                 }
                 if(response.isSuccessful()){
                     System.out.println("good");
+                    previewImage.buildDrawingCache();
+                    Bitmap image= previewImage.getDrawingCache();
+                    Bundle extras = new Bundle();
+                    extras.putParcelable("image", image);
                     Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
+                    resultOverlay.putExtras(extras);
                     startActivity(resultOverlay);
                 }
                 else{

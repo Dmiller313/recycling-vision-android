@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.prj666.recycling_vision.Navigation;
 import com.prj666.recycling_vision.R;
 
 import org.json.JSONObject;
@@ -25,7 +26,7 @@ import java.util.Map;
 public class PasswordReset extends AppCompatActivity {
 
     private TextView email, password, newPassword;
-    private Button button;
+    private Button reset, cancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +35,11 @@ public class PasswordReset extends AppCompatActivity {
         email = findViewById(R.id.edtTxtEmail);
         password = findViewById(R.id.edtTxtPassword);
         newPassword = findViewById(R.id.edtTxtNewPassword);
-        button = findViewById(R.id.btnReset);
+        reset = findViewById(R.id.btnReset);
+        cancel = findViewById(R.id.cancel);
 
-        button.setOnClickListener(new View.OnClickListener() {
+
+        reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(PasswordReset.this);
@@ -72,6 +75,15 @@ public class PasswordReset extends AppCompatActivity {
                 queue.add(request);
                 Intent login = new Intent(PasswordReset.this, Login.class);
                 PasswordReset.this.startActivity(login);
+            }
+        });
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nav = new Intent(PasswordReset.this, Navigation.class);
+                PasswordReset.this.startActivity(nav);
             }
         });
     }
