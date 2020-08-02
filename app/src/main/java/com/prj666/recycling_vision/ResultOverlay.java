@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +40,8 @@ public class ResultOverlay extends AppCompatActivity {
         setContentView(R.layout.activity_result_overlay);
 
         Intent intent = getIntent();
-
+        byte [] bytes = intent.getExtras().getByteArray("picture");
+        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         instructions = findViewById(R.id.instructions);
         TextView objectName = findViewById(R.id.objectName);
         TextView matchProbability = findViewById(R.id.matchProbability);
@@ -51,14 +54,7 @@ public class ResultOverlay extends AppCompatActivity {
         String object = intent.getStringExtra("object");
         objectName.setText(object);
 
-
-        String filename = intent.getStringExtra("filename");
-        File imgFile = new  File(filename);
-        Uri uri = Uri.fromFile(imgFile);
-        image.setImageURI(uri);
-
-
-
+        image.setImageBitmap(bmp);
 
         RequestQueue queue = Volley.newRequestQueue(this);
 

@@ -115,8 +115,8 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             Bundle extras = data.getExtras();
             bmp = (Bitmap) extras.get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp = Bitmap.createScaledBitmap(bmp, 256, 256, true);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+            bmp = Bitmap.createScaledBitmap(bmp, 512, 512, true);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 20, stream);
 
             previewImage.setImageBitmap(bmp);
             img = stream.toByteArray();
@@ -173,7 +173,8 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
-                resultOverlay.putExtra("filename", filename);
+                //resultOverlay.putExtra("filename", filename);
+                resultOverlay.putExtra("picture", img);
                 startActivity(resultOverlay);
             }
             else{
