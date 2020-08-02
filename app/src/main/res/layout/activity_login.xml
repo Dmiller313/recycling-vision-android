@@ -26,8 +26,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recoverAccount">
+        app:layout_constraintRight_toRightOf="parent">
 
         <EditText
             android:id="@+id/login_username"
@@ -55,52 +54,66 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#EC2468"
+        android:textColor="#5C0E29"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/login_details"
-        app:layout_constraintBottom_toTopOf="@id/recoverAccount"/>
+        app:layout_constraintBottom_toTopOf="@id/buttons"/>
 
     <ProgressBar
         android:visibility="invisible"
         android:id="@+id/login_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@id/create_account"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginErrorMessage" />
-
-    <Button
-        android:visibility="visible"
-        android:id="@+id/recoverAccount"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_login_button"
-        android:text="@string/recover_account"
-        android:textSize="17sp"
-        android:textColor="@color/LightSkyBlue"
-        android:backgroundTint="@color/LightSkyBlue"
-        app:layout_constraintBottom_toTopOf="@id/login_button"
         app:layout_constraintTop_toBottomOf="@id/loginErrorMessage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/buttons"
+        app:layout_constraintBottom_toBottomOf="@id/buttons"/>
 
-    <Button
-        android:visibility="visible"
-        android:id="@+id/login_button"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_login_button"
-        android:fontFamily="sans-serif"
-        android:text="@string/sign_in"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/LightSkyBlue"
-        android:backgroundTint="@color/LightSkyBlue"
-        app:layout_constraintBottom_toTopOf="@id/create_account"
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/login_details"
+        app:layout_constraintBottom_toTopOf="@id/divider">
+
+        <Button
+            android:layout_marginVertical="10dp"
+            android:id="@+id/recoverAccount"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_login_button"
+            android:backgroundTint="@color/LightSkyBlue"
+            android:text="@string/recover_account"
+            android:textColor="@color/LightSkyBlue"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_login_button"
+            android:backgroundTint="@color/LightSkyBlue"
+            android:fontFamily="sans-serif"
+            android:text="@string/sign_in"
+            android:textColor="@color/LightSkyBlue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="350dp"
+        android:layout_height="0.5dp"
+        android:background="@color/Black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recoverAccount" />
+        app:layout_constraintTop_toBottomOf="@id/buttons"
+        app:layout_constraintBottom_toTopOf="@id/create_account"/>
 
     <LinearLayout
         android:id="@+id/create_account"
@@ -108,24 +121,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_progress_bar"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         android:gravity="center">
 
         <TextView
             android:id="@+id/create_account_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="@string/create_account"
             android:textColor="@color/LightSkyBlue"
             android:fontFamily="sans-serif"
-            app:layout_constraintBottom_toTopOf="@id/create_account_button"
             android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/create_account_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create One"
+            android:text="@string/create_one"
             android:textColor="@color/LightSkyBlue"
             android:background="@drawable/ic_login_button"
             android:backgroundTint="@color/LightSkyBlue"

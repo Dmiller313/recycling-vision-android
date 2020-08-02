@@ -8,49 +8,35 @@
     android:orientation="vertical"
     tools:context=".user.AccountSettings">
 
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/logout_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
         <Switch
             android:id="@+id/historySwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
             android:textSize="20sp"
-            android:text="@string/track_history"/>
+            android:text="@string/track_history"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/changePassword"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="30dp"
-            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/changePassword"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
                 android:text="@string/change_npassword"
                 android:textAllCaps="false"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/historySwitch"
+                app:layout_constraintBottom_toTopOf="@id/changeLocation"/>
 
             <Button
                 android:id="@+id/changeLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/change_nlocation"
                 android:textAllCaps="false"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/changePassword"
+                app:layout_constraintBottom_toTopOf="@id/saveButton"/>
 
         <Button
             android:id="@+id/saveButton"
@@ -58,14 +44,14 @@
             android:layout_height="wrap_content"
             android:text="@string/save_settings"
             android:textAllCaps="false"
-            android:textSize="30sp" />
-    </LinearLayout>
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@id/changeLocation"
+            app:layout_constraintBottom_toTopOf="@id/logout_button"/>
 
     <Button
         android:id="@+id/logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
         android:background="#FF0000"
         android:text="@string/logout"
         android:textColor="#FFFFFF"
