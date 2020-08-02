@@ -3,8 +3,11 @@ package com.prj666.recycling_vision;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,8 +31,9 @@ public class ResultOverlay extends AppCompatActivity {
 
     private ImageView image;
     private TextView matchProbability, objectName, instructions;
-    private Bundle bundle = getIntent().getExtras();
     private String object, filename, percentage;
+    private Button back;
+    private Intent intent = getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +44,17 @@ public class ResultOverlay extends AppCompatActivity {
         objectName  = findViewById(R.id.objectName);
         matchProbability  = findViewById(R.id.matchProbability);
         image  = findViewById(R.id.objectImage);
+        back = findViewById(R.id.back);
 
-
-       // percentage = bundle.getString("percentage");
+       // percentage = intent.getStringExtra("percentage");
        // matchProbability.setText(percentage);
 
-        object = bundle.getString("object");
+        object = intent.getStringExtra("object");
         objectName.setText(object);
 
 
 
-        filename = bundle.getString("filename");
+        filename = intent.getStringExtra("filename");
         File imgFile = new  File(filename);
         Uri uri = Uri.fromFile(imgFile);
         image.setImageURI(uri);
@@ -94,6 +98,13 @@ public class ResultOverlay extends AppCompatActivity {
         queue.add(request);
 
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photo = new Intent(ResultOverlay.this, TakePhoto.class);
+                ResultOverlay.this.startActivity(photo);
+            }
+        });
     }
 
 }
