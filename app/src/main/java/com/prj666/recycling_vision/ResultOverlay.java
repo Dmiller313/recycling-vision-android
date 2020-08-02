@@ -29,32 +29,30 @@ import java.util.Map;
 public class ResultOverlay extends AppCompatActivity {
 
 
-    private ImageView image;
-    private TextView matchProbability, objectName, instructions;
-    private String object, filename, percentage;
-    private Button back;
-    private Intent intent = getIntent();
+    private TextView instructions;
+    private String percentage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_overlay);
 
+        Intent intent = getIntent();
+
         instructions = findViewById(R.id.instructions);
-        objectName  = findViewById(R.id.objectName);
-        matchProbability  = findViewById(R.id.matchProbability);
-        image  = findViewById(R.id.objectImage);
-        back = findViewById(R.id.back);
+        TextView objectName = findViewById(R.id.objectName);
+        TextView matchProbability = findViewById(R.id.matchProbability);
+        ImageView image = findViewById(R.id.objectImage);
+        Button back = findViewById(R.id.back);
 
        // percentage = intent.getStringExtra("percentage");
        // matchProbability.setText(percentage);
 
-        object = intent.getStringExtra("object");
+        String object = intent.getStringExtra("object");
         objectName.setText(object);
 
 
-
-        filename = intent.getStringExtra("filename");
+        String filename = intent.getStringExtra("filename");
         File imgFile = new  File(filename);
         Uri uri = Uri.fromFile(imgFile);
         image.setImageURI(uri);
