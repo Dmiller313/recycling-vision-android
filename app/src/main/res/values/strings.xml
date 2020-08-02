@@ -42,7 +42,7 @@
     <string name="sign_in">SIGN IN</string>
     <string name="don_t_have_an_account_create_one">Don\'t have an account? Create one!</string>
     <string name="username_password_error_message">Username and/or password is incorrect</string>
-    <string name="photo_instruction">Take a photo of the unknown object, ensuring that it\'s in focus and in the middle of the frame</string>
+    <string name="photo_instruction"><b>Instructions:</b> \nTake a photo of the unknown object, ensuring that it\'s in focus and in the middle of the frame</string>
     <string name="take_photo">Take Photo</string>
     <string name="analyze_photo">Analyze Photo</string>
     <string name="back">Back</string>
