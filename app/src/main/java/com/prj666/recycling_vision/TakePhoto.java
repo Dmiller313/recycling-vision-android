@@ -21,6 +21,11 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.os.Parcelable;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -110,7 +115,7 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             Bundle extras = data.getExtras();
             bmp = (Bitmap) extras.get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp = Bitmap.createScaledBitmap(bmp, 512, 512, true);
+            bmp = Bitmap.createScaledBitmap(bmp, 256, 256, true);
             bmp.compress(Bitmap.CompressFormat.JPEG, 0, stream);
 
             previewImage.setImageBitmap(bmp);
@@ -147,10 +152,8 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                     .post(body)
                     .build();
             Response response = null;
-            System.out.println("alright");
             try {
                 response = client.newCall(request).execute();
-                System.out.println("executing");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -158,9 +161,19 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                 runOnUiThread(()->{
                     processing_ll.setVisibility(View.GONE);
                 });
-
-                System.out.println("good");
                 Intent resultOverlay = new Intent(TakePhoto.this, ResultOverlay.class);
+
+                try {
+                    String jsonData = response.body().string();
+                    JSONObject json = new JSONObject(jsonData);
+                    String object = json.getString("foundObject");
+                    //String percentage = json.getString("matchPercent");
+                    //resultOverlay.putExtra("percentage", percentage);
+                    resultOverlay.putExtra("object", object);
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                resultOverlay.putExtra("filename", filename);
                 startActivity(resultOverlay);
             }
             else{
