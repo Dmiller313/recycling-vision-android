@@ -17,6 +17,7 @@
         android:textColor="#00263c"
         android:textSize="36sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/referenceLink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,19 +30,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/toronto_logo" />
+        app:layout_constraintVertical_bias="0.498"
+        app:srcCompat="@drawable/toronto_logo"
+        />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="288dp"
         android:layout_height="44dp"
         android:gravity="center"
-        android:text="Click On Image to Visit the City of Toronto Website"
+        android:text="Click On Image to Visit the City of Toronto's Recycling Website"
         android:textColor="#00263c"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/referenceLink"
         app:layout_constraintStart_toStartOf="@+id/referenceLink"
         app:layout_constraintTop_toBottomOf="@+id/referenceLink" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_login_button"
+        android:backgroundTint="#00263c"
+        android:text="Back"
+        android:textColor="#00263c"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
