@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5d5c61"
+    android:background="@color/White"
     tools:context=".recycling_references.RecyclingReference">
 
 
@@ -36,7 +36,7 @@
         android:layout_width="288dp"
         android:layout_height="44dp"
         android:gravity="center"
-        android:text="Click On Image to Visit City of Toronto Website"
+        android:text="Click On Image to Visit the City of Toronto Website"
         android:textColor="#00263c"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/referenceLink"
