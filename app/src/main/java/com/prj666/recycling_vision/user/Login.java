@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity
 {
     private static boolean LOGGED_IN = false;
 
-    private EditText username, password;
+    private EditText email, password;
     private TextView loginErrorMessage;
     private Button signInButton, accountRecoveryButton;
     private ProgressBar loginProgressBar;
@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username = findViewById(R.id.login_username);
+        email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
         signInButton = findViewById(R.id.login_button);
         accountRecoveryButton = findViewById(R.id.recoverAccount);
@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity
                 JSONObject jsonLogin = new JSONObject();
                 try
                 {
-                    jsonLogin.put("username", username.getText().toString());
+                    jsonLogin.put("email", email.getText().toString());
                     jsonLogin.put("password", password.getText().toString());
                 }
                 catch (JSONException e)
@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity
             }
         });
 
-        username.addTextChangedListener(new TextWatcher()
+        email.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -130,10 +130,10 @@ public class Login extends AppCompatActivity
     {
         super.onResume();
 
-        if(username != null || password != null || loginErrorMessage != null)
+        if(email != null || password != null || loginErrorMessage != null)
         {
-            assert username != null;
-            username.setText("");
+            assert email != null;
+            email.setText("");
             password.setText("");
             loginErrorMessage.setText("");
         }
@@ -150,16 +150,27 @@ public class Login extends AppCompatActivity
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        //System.out.println("user exists!");
 
-                        //clear any previous error messages on incorrect login details
-                        loginErrorMessage.setText("");
-                        //Toast.makeText(getApplicationContext(), "User exists!", Toast.LENGTH_SHORT).show();
+                        try {
+                            if(response.getString("status").equals("success"))
+                            {
+                                //clear any previous error messages on incorrect login details
+                                loginErrorMessage.setText("");
 
-                        //set authentication flag and redirect user to app's navigation menu
-                        LOGGED_IN = true;
-                        Intent toNavigationMenu = new Intent(getApplicationContext(), Navigation.class);
-                        startActivity(toNavigationMenu);
+                                //set authentication flag and redirect user to app's navigation menu
+                                LOGGED_IN = true;
+                                Intent toNavigationMenu = new Intent(getApplicationContext(), Navigation.class);
+                                startActivity(toNavigationMenu);
+                            }
+                            else if (response.getString("status").equals("validate"))
+                            {
+                                revealButtonsAndHideProgressBar();
+                                Toast.makeText(getApplicationContext(), "Please validate your account!", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            System.out.println(e.getMessage());
+                        }
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -168,9 +179,7 @@ public class Login extends AppCompatActivity
 
                         //if there is an error is comparing the user's login credentials against their
                         //stored credentials in the database, display an error message
-                        loginProgressBar.setVisibility(View.INVISIBLE);
-                        signInButton.setVisibility(View.VISIBLE);
-                        accountRecoveryButton.setVisibility(View.VISIBLE);
+                        revealButtonsAndHideProgressBar();
                         loginErrorMessage.setText(R.string.username_password_error_message);
                         Toast.makeText(getApplicationContext(), "No user found!", Toast.LENGTH_SHORT).show();
                     }
@@ -193,5 +202,12 @@ public class Login extends AppCompatActivity
             return true;
         else
             return false;
+    }
+
+    public void revealButtonsAndHideProgressBar()
+    {
+        loginProgressBar.setVisibility(View.INVISIBLE);
+        signInButton.setVisibility(View.VISIBLE);
+        accountRecoveryButton.setVisibility(View.VISIBLE);
     }
 }

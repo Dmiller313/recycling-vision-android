@@ -47,7 +47,7 @@
 
     <!-- Login -->
     <string name="sign_in">SIGN IN</string>
-    <string name="username_password_error_message">Username and/or password is incorrect</string>
+    <string name="username_password_error_message">Email and/or password is incorrect</string>
     <string name="match_found">Match Found!</string>
     <string name="object_name">Object Name</string>
     <string name="incorrect_identification">Incorrect Identification?</string>
@@ -59,6 +59,8 @@
     <string name="result">Result</string>
     <string name="create_account">Don\'t have an account?</string>
     <string name="create_one">Create One</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
 
     <!-- Terms of Use -->
     <string name="terms_of_use">TERMS OF USE</string>
