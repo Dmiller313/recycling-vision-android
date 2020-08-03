@@ -24,13 +24,43 @@ import com.prj666.recycling_vision.user.Settings;
 
 import org.json.JSONObject;
 
-public class Navigation extends AppCompatActivity {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
+public class Navigation extends AppCompatActivity {
+    Boolean accepted = false;
+    private final String SETTINGS_FILE = "accountSettings.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme); //Display loading screen
         super.onCreate(savedInstanceState);
-        //if(TOU.accepted){
+
+        File userSettingsFile = new File(this.getFilesDir(), SETTINGS_FILE);
+        if(userSettingsFile.exists()){
+            System.out.println("file exists");
+            FileReader fr = null;
+            try {
+                fr = new FileReader(userSettingsFile);
+                BufferedReader br = new BufferedReader(fr);
+                String fileContents;
+                while ((fileContents = br.readLine()) != null && !accepted) {
+                    System.out.println(fileContents);
+                    if(fileContents.equals("touAccepted=true")){
+                        accepted = true;
+                    }
+                }
+                System.out.println("file was empty");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        if(accepted){
             String url = "https://recycling-vision.herokuapp.com/recyclingmessage/single";
             String tfUrl = "https://rv-tensorflow.herokuapp.com/";
             RequestQueue queue = Volley.newRequestQueue(this);
@@ -106,14 +136,13 @@ public class Navigation extends AppCompatActivity {
                 Intent i = new Intent(Navigation.this, Login.class);
                 startActivity(i);
             }
-        /*}
+        }
         else{
-            setContentView(R.layout.activity_tou);
-            Intent i
-        }*/
-
-        //The TOU use case will likely go here; need to have code bypassing TOU when already accepted
-        //May also need to rename the activity/.xml when making that UC
+            Intent tou = new Intent(Navigation.this, Terms.class);
+            tou.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(tou);
+            finish();
+        }
 
     }
 }

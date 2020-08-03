@@ -6,7 +6,7 @@ public class Settings {
     //User variables
     Integer userID;
     String postalCode;
-
+    Boolean touAccepted;
     //Setting variables
     Boolean objectHistoryEnabled;
     Date timestampDateTime;
@@ -17,11 +17,12 @@ public class Settings {
         this.postalCode = postalCode;
     }
 
-    public Settings(Integer userID, String postalCode, Boolean objectHistoryEnabled, Date timestampDateTime) {
+    public Settings(Integer userID, String postalCode, Boolean objectHistoryEnabled, Date timestampDateTime, Boolean touAccepted) {
         //user
         this.userID = userID;
         this.postalCode = postalCode;
         //setting
+        this.touAccepted = touAccepted;
         this.objectHistoryEnabled = objectHistoryEnabled;
         this.timestampDateTime =  timestampDateTime;
     }
@@ -51,6 +52,10 @@ public class Settings {
     {
         this.objectHistoryEnabled = objectHistoryEnabled;
     }
+
+    public void setTouAccepted(Boolean touAccepted){ this.touAccepted = touAccepted; }
+
+    public Boolean getTouAccepted(){ return this.touAccepted; }
 
     public Boolean getObjectHistoryEnabled()
     {
