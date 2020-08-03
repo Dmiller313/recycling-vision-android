@@ -88,8 +88,7 @@ public class Registration extends AppCompatActivity {
                                         startActivity(i);
 
                                     } else {
-                                        System.out.println("A user has already used this email address");
-                                        Toast.makeText(getApplicationContext(), "A user has already used this email address", Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getApplicationContext(), "A user has already used this email address", Toast.LENGTH_LONG).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
