@@ -22,13 +22,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity {
 
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+    private static final String Date_pattern = "^[0-9]{4}([-])(((0[13578]|(10|12))\\1(0[1-9]|[1-2][0-9]|3[0-1]))|(02\\1(0[1-9]|[1-2][0-9]))|((0[469]|11)\\1(0[1-9]|[1-2][0-9]|30)))$\n";
+    private static final String phone_pattern = "^(\\d{10})|(([\\(]?([0-9]{3})[\\)]?)?[ \\.\\-]?([0-9]{3})[ \\.\\-]([0-9]{4}))$\n";
     private TextView edtTxtUserName, edtTxtPassword, edtTxtRepeatPass,
             edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtDate;
     private String validEmail;
@@ -113,6 +120,10 @@ public class Registration extends AppCompatActivity {
         });
     }
     private boolean validateData() {
+        if (edtTxtUserName.getText().toString().isEmpty()  ) {
+            Toast.makeText(getApplicationContext(), "Invalid Username", Toast.LENGTH_LONG).show();
+            return false;
+        }
         if (edtTxtPassword.getText().toString().isEmpty() ||
                 edtTxtRepeatPass.getText().toString().isEmpty() ||
                 !(edtTxtRepeatPass.getText().toString().matches(PASSWORD_PATTERN))) {
@@ -132,24 +143,44 @@ public class Registration extends AppCompatActivity {
 
             return false;
         }
-        if (edtTxtPhone.getText().toString().isEmpty() || !(edtTxtPhone.getText().toString().length() == 10)) {
+        if (edtTxtPhone.getText().toString().isEmpty() || !(edtTxtPhone.getText().toString().length() == 10)
+         || !(edtTxtPhone.getText().toString().matches(phone_pattern)) ) {
             Toast.makeText(getApplicationContext(), "Invalid phone", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (edtTxtUserName.getText().toString().isEmpty()  ) {
-            Toast.makeText(getApplicationContext(), "Invalid Username", Toast.LENGTH_LONG).show();
-            return false;
-        }
 
-        if (edtTxtDate.getText().toString().isEmpty() || !(edtTxtDate.getText().toString().length() == 10)) {
-            Toast.makeText(getApplicationContext(), "Invalid Date", Toast.LENGTH_LONG).show();
-
-            return false;
-        }
         if (edtTxtPostalAddress.getText().toString().isEmpty() || !(edtTxtPostalAddress.getText().toString().length() == 6)) {
             Toast.makeText(getApplicationContext(), "Invalid Postal Code", Toast.LENGTH_LONG).show();
             return false;
         }
+        if (edtTxtDate.getText().toString().isEmpty() || !(edtTxtDate.getText().toString().length() == 10)
+        || !(edtTxtDate.getText().toString().matches(Date_pattern)) ) {
+            Toast.makeText(getApplicationContext(), "Invalid Date", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-DD", Locale.ENGLISH);
+        Date date;
+        int userDate;
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        try {
+
+            date = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA).parse(edtTxtDate.getText().toString());
+            calendar.setTime(date);
+            userDate = calendar.get(Calendar.YEAR);
+            if( (currentYear - userDate) < 13 ){
+
+                Toast.makeText(getApplicationContext(), "Must be 13 or older", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
 
         return true;
     }

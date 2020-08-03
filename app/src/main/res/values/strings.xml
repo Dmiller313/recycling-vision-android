@@ -39,7 +39,7 @@
     <string name="phone">Phone:</string>
     <string name="postal_code">Postal Code:</string>
     <string name="register">Register</string>
-    <string name="dob_format">YYYY/MM/DD</string>
+    <string name="dob_format">YYYY-MM-DD</string>
     <string name="username">Username:</string>
     <string name="date_of_birth">Date Of Birth:</string>
 

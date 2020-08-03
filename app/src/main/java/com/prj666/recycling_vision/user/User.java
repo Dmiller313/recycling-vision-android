@@ -29,7 +29,7 @@ public class User implements Parcelable {
         this.email = email;
         this.password = password;
         this.postalCode = postalCode;
-        this.dateOfBirth = new SimpleDateFormat("yyyy/MM/dd", Locale.CANADA).parse(dateOfBirth);
+        this.dateOfBirth = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA).parse(dateOfBirth);
         this.validationStatus = validationStatus;
     }
 
