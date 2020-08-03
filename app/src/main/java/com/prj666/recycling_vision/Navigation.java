@@ -40,24 +40,19 @@ public class Navigation extends AppCompatActivity {
 
         File userSettingsFile = new File(this.getFilesDir(), SETTINGS_FILE);
         if(userSettingsFile.exists()){
-            System.out.println("file exists");
             FileReader fr = null;
             try {
                 fr = new FileReader(userSettingsFile);
                 BufferedReader br = new BufferedReader(fr);
                 String fileContents;
                 while ((fileContents = br.readLine()) != null && !accepted) {
-                    System.out.println(fileContents);
                     if(fileContents.equals("touAccepted=true")){
                         accepted = true;
                     }
                 }
-                System.out.println("file was empty");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
 
         if(accepted){
@@ -108,7 +103,6 @@ public class Navigation extends AppCompatActivity {
                 takePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
 
                         Intent i = new Intent(Navigation.this, TakePhoto.class);
                         startActivity(i);
@@ -139,7 +133,7 @@ public class Navigation extends AppCompatActivity {
         }
         else{
             Intent tou = new Intent(Navigation.this, Terms.class);
-            tou.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            tou.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(tou);
             finish();
         }

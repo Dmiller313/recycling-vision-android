@@ -210,4 +210,9 @@ public class Login extends AppCompatActivity
         signInButton.setVisibility(View.VISIBLE);
         accountRecoveryButton.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void onBackPressed(){
+        finishAffinity();
+    }
 }

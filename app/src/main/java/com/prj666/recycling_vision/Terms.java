@@ -48,9 +48,9 @@ public class Terms extends AppCompatActivity {
                     outputStreamWriter.close();
 
                     Intent i = new Intent(Terms.this, Navigation.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(i);
-                    finish();
+                    finishAffinity();
                 }
                     catch (IOException e)
                 {
