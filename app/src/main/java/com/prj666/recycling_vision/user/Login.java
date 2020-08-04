@@ -150,9 +150,9 @@ public class Login extends AppCompatActivity
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
-                            if(response.getString("status").equals("success"))
+                        String status = response.getString("status");
+                            if(status.equals("success") || status.equals("recover"))
                             {
                                 //clear any previous error messages on incorrect login details
                                 loginErrorMessage.setText("");
@@ -162,7 +162,7 @@ public class Login extends AppCompatActivity
                                 Intent toNavigationMenu = new Intent(getApplicationContext(), Navigation.class);
                                 startActivity(toNavigationMenu);
                             }
-                            else if (response.getString("status").equals("validate"))
+                            else if (status.equals("validate"))
                             {
                                 revealButtonsAndHideProgressBar();
                                 Toast.makeText(getApplicationContext(), "Please validate your account!", Toast.LENGTH_SHORT).show();
@@ -181,7 +181,7 @@ public class Login extends AppCompatActivity
                         //stored credentials in the database, display an error message
                         revealButtonsAndHideProgressBar();
                         loginErrorMessage.setText(R.string.username_password_error_message);
-                        Toast.makeText(getApplicationContext(), "No user found!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "No user found!", Toast.LENGTH_SHORT).show();
                     }
         });
         //add the current request to the RequestQueue

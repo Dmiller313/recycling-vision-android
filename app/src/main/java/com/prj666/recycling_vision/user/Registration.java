@@ -37,7 +37,8 @@ public class Registration extends AppCompatActivity {
     private static final String Date_pattern = "^[0-9]{4}([-])(((0[13578]|(10|12))\\1(0[1-9]|[1-2][0-9]|3[0-1]))|(02\\1(0[1-9]|[1-2][0-9]))|((0[469]|11)\\1(0[1-9]|[1-2][0-9]|30)))$";
     private static final String phone_pattern = "^(\\d{10})|(([\\(]?([0-9]{3})[\\)]?)?[ \\.\\-]?([0-9]{3})[ \\.\\-]([0-9]{4}))$\n";
     private TextView edtTxtUserName, edtTxtPassword, edtTxtRepeatPass,
-            edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtDate;
+            edtTxtEmail, edtTxtPhone, edtTxtPostalAddress, edtTxtYear,
+            edtTxtMonth, edtTxtDay;
     private String validEmail;
 
     @Override
@@ -56,17 +57,20 @@ public class Registration extends AppCompatActivity {
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
         edtTxtPhone = findViewById(R.id.edtTxtPhone);
         edtTxtPostalAddress = findViewById(R.id.edtTxtPostalAddress);
-        edtTxtDate = findViewById(R.id.edtTxtDate);
+        edtTxtYear = findViewById(R.id.edtTxtYear);
+        edtTxtMonth = findViewById(R.id.edtTxtMonth);
+        edtTxtDay = findViewById(R.id.edtTxtDay);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Boolean valid = validateData();
+                String date = edtTxtYear.getText().toString() + "-" + edtTxtMonth.getText().toString() + "-" + edtTxtDay.getText().toString();
+                Boolean valid = validateData(date);
                 if (valid) {
                     try {
                         User user = new User(edtTxtUserName.getText().toString(), edtTxtPhone.getText().toString(), edtTxtEmail.getText().toString(),
                                 edtTxtPassword.getText().toString(), edtTxtPostalAddress.getText().toString(),
-                                edtTxtDate.getText().toString(), false);
+                                date, false);
 
 
                         String url = "https://recycling-vision.herokuapp.com/exists";
@@ -118,7 +122,7 @@ public class Registration extends AppCompatActivity {
             }
         });
     }
-    private boolean validateData() {
+    private boolean validateData(String dateString) {
         if (edtTxtUserName.getText().toString().isEmpty()  ) {
             Toast.makeText(getApplicationContext(), "Invalid Username", Toast.LENGTH_LONG).show();
             return false;
@@ -152,10 +156,8 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Invalid Postal Code", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (edtTxtDate.getText().toString().isEmpty() || !(edtTxtDate.getText().toString().length() == 10)
-        || !(edtTxtDate.getText().toString().matches(Date_pattern)) ) {
-            Toast.makeText(getApplicationContext(), "Invalid Date", Toast.LENGTH_LONG).show();
-
+        if(dateString.isEmpty() || !(dateString.matches(Date_pattern)) || dateString.length() != 10){
+            Toast.makeText(getApplicationContext(), "Please enter a valid date", Toast.LENGTH_LONG);
             return false;
         }
 
@@ -166,7 +168,7 @@ public class Registration extends AppCompatActivity {
         int currentYear = calendar.get(Calendar.YEAR);
         try {
 
-            date = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA).parse(edtTxtDate.getText().toString());
+            date = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA).parse(dateString);
             calendar.setTime(date);
             userDate = calendar.get(Calendar.YEAR);
             if( (currentYear - userDate) < 13 ){

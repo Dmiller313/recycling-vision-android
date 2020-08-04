@@ -68,7 +68,7 @@ public class PasswordReset extends AppCompatActivity {
                                 } else if (res.equals("unauthorized")) {
                                     Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "An error has occurred, please try again", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "An error has occurred. Please try again", Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -77,7 +77,7 @@ public class PasswordReset extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), "An error has occurred, please try again", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "An error has occurred. Please try again", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(request);

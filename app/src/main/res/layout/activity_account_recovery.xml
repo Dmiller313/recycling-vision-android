@@ -69,6 +69,14 @@
             android:text="@string/exit"
             android:textSize="20sp"
             android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/recAccountMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/check_email"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

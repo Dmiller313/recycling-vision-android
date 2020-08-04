@@ -26,13 +26,12 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Navigation extends AppCompatActivity {
     Boolean accepted = false;
-    private final String SETTINGS_FILE = "accountSettings.txt";
+    private final String SETTINGS_FILE = "tou.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme); //Display loading screen

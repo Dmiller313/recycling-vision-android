@@ -23,7 +23,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Terms extends AppCompatActivity {
-    private final String SETTINGS_FILE = "accountSettings.txt";
+    private final String SETTINGS_FILE = "tou.txt";
     private Settings userSettings;
     private File userSettingsFile;
 

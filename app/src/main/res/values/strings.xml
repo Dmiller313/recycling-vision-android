@@ -10,7 +10,7 @@
     <string name="e_mail">E-Mail:</string>
     <string name="example_abc_com">example@abc.com</string>
     <string name="submit">Submit</string>
-    <string name="exit">Exit</string>
+    <string name="exit">Cancel</string>
     <string name="acc_recovery_instr">Please enter the email address used to create the account</string>
     <string name="city_recycling_link"><a href="https://www.toronto.ca/services-payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/">https://www.toronto.ca/services-payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/</a></string>
     <string name="link_title">Official City of Toronto \"What Goes in the Blue Bin?\" Recycling Reference Webpage:</string>
@@ -212,5 +212,6 @@ Using the Application, sending us emails, and completing online forms constitute
 MISCELLANEOUS\n
 These Terms of Use and any policies or operating rules posted by us on the Application constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Terms of Use shall not operate as a waiver of such right or provision. These Terms of Use operate to the fullest extent permissible by law. We may assign any or all of our rights and obligations to others at any time. We shall not be responsible or liable for any loss, damage, delay, or failure to act caused by any cause beyond our reasonable control. If any provision or part of a provision of these Terms of Use is determined to be unlawful, void, or unenforceable, that provision or part of the provision is deemed severable from these Terms of Use and does not affect the validity and enforceability of any remaining provisions. There is no joint venture, partnership, employment or agency relationship created between you and us as a result of these Terms of Use or use of the Site. You agree that these Terms of Use will not be construed against us by virtue of having drafted them. You hereby waive any and all defenses you may have based on the electronic form of these Terms of Use and the lack of signing by the parties hereto to execute these Terms of Use.\n\n
     </string>
+    <string name="check_email">Please check your email for further instructions</string>
 
 </resources>

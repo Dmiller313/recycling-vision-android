@@ -7,227 +7,281 @@
     android:background="@drawable/ic_login_background"
     tools:context=".user.Registration">
 
-    <LinearLayout
-        android:id="@+id/registration_form"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/btnRegister"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle">
+        android:isScrollContainer="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle">
 
         <LinearLayout
-            android:layout_marginVertical="10dp"
+            android:id="@+id/registration_form"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/btnRegister"
             app:layout_constraintTop_toBottomOf="@id/txtTitle">
 
-            <TextView
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:id="@+id/username_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/username"
-                android:textColor="@color/Black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/edtTxtUserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:maxLength="32"
-                android:textColor="@color/Black" />
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-                    <TextView
-                        android:id="@+id/password_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.25"
-                        android:text="@string/password"
-                        android:textColor="@color/Black"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/edtTxtPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="password"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        android:maxLength="32"
-                        android:textColor="@color/Black" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-                    <TextView
-                        android:id="@+id/re-type_pass_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/re_enter_password"
-                        android:textColor="@color/Black"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/edtTxtRepeatPass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        android:textColor="@color/Black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-                    <TextView
-                        android:id="@+id/email_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/email"
-                        android:textColor="@color/Black"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/edtTxtEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/Black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-                    <TextView
-                        android:id="@+id/phone_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/phone"
-                        android:textColor="@color/Black"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/edtTxtPhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:textColor="@color/Black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:id="@+id/postal_code_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/postal_code"
-                        android:textColor="@color/Black"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/edtTxtPostalAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPostalAddress"
-                        android:maxLength="6"
-                        android:textColor="@color/Black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent">
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle">
+
                 <TextView
-                    android:id="@+id/date_of_birth_text"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/username_text"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/date_of_birth"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/username"
                     android:textColor="@color/Black"
                     android:textSize="18sp" />
-                <TextView
-                    android:id="@+id/dob_format_text"
+
+                <EditText
+                    android:id="@+id/edtTxtUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/dob_format"
-                    app:layout_constraintEnd_toEndOf="@+id/textView8"
-                    app:layout_constraintStart_toStartOf="@+id/textView8"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:maxLength="32"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/password_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:text="@string/password"
                     android:textColor="@color/Black"
-                    android:textSize="15sp"/>
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTxtPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:maxLength="32"
+                    android:textColor="@color/Black" />
             </LinearLayout>
 
 
-        <EditText
-                        android:id="@+id/edtTxtDate"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/re-type_pass_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/re_enter_password"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTxtRepeatPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/email_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/email"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTxtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/phone_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/phone"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTxtPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/postal_code_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/postal_code"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTxtPostalAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPostalAddress"
+                    android:maxLength="6"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/date_of_birth_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date_of_birth"
+                        android:textColor="@color/Black"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toBottomOf="@+id/postal_code_text" />
+
+                    <TextView
+                        android:id="@+id/dob_format_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dob_format"
+                        android:textColor="@color/Black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right">
+
+                    <EditText
+                        android:id="@+id/edtTxtYear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints=""
-                        android:ems="10"
+                        android:ems="4"
                         android:inputType="date"
-                        android:maxLength="10"
+                        android:maxLength="4"
                         android:textColor="@color/Black" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="-"/>
+                    <EditText
+                        android:id="@+id/edtTxtMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints=""
+                        android:ems="2"
+                        android:inputType="date"
+                        android:maxLength="2"
+                        android:textColor="@color/Black" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="-"/>
+                    <EditText
+                        android:id="@+id/edtTxtDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints=""
+                        android:ems="2"
+                        android:inputType="date"
+                        android:maxLength="2"
+                        android:textColor="@color/Black" />
+                </LinearLayout>
 
-    </LinearLayout>
-
-    </LinearLayout>
-
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="130dp"
+                android:layout_height="54dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_login_button"
+                android:backgroundTint="@color/LightSkyBlue"
+                android:text="@string/register"
+                android:textColor="@color/LightSkyBlue"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registration_form" />
+        </LinearLayout>
+    </ScrollView>
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="match_parent"
@@ -251,20 +305,5 @@
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="130dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/ic_login_button"
-        android:backgroundTint="@color/LightSkyBlue"
-        android:text="@string/register"
-        android:textColor="@color/LightSkyBlue"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registration_form" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
