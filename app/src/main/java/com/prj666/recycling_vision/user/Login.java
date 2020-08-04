@@ -137,6 +137,10 @@ public class Login extends AppCompatActivity
             password.setText("");
             loginErrorMessage.setText("");
         }
+
+        signInButton.setVisibility(View.VISIBLE);
+        accountRecoveryButton.setVisibility(View.VISIBLE);
+        loginProgressBar.setVisibility(View.INVISIBLE);
     }
 
     public void checkIfUserExists(JSONObject jsonLogin)
