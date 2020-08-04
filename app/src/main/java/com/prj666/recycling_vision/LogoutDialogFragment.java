@@ -23,6 +23,7 @@ public class LogoutDialogFragment extends DialogFragment
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Login.setUserLoginFlag(false);
                                 startActivity(new Intent(getActivity(), Login.class));
                             }
                         })

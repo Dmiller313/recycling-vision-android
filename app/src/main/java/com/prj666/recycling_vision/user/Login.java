@@ -141,6 +141,8 @@ public class Login extends AppCompatActivity
         signInButton.setVisibility(View.VISIBLE);
         accountRecoveryButton.setVisibility(View.VISIBLE);
         loginProgressBar.setVisibility(View.INVISIBLE);
+
+        LOGGED_IN=false;
     }
 
     public void checkIfUserExists(JSONObject jsonLogin)
@@ -197,6 +199,11 @@ public class Login extends AppCompatActivity
     {
         Intent toRegistration = new Intent(this, Registration.class);
         startActivity(toRegistration);
+    }
+
+    public static void setUserLoginFlag(boolean loginFlag)
+    {
+        LOGGED_IN = loginFlag;
     }
 
     //check if the user has been authenticated and logged into the app
