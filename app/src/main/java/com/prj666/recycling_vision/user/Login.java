@@ -138,9 +138,7 @@ public class Login extends AppCompatActivity
             loginErrorMessage.setText("");
         }
 
-        signInButton.setVisibility(View.VISIBLE);
-        accountRecoveryButton.setVisibility(View.VISIBLE);
-        loginProgressBar.setVisibility(View.INVISIBLE);
+        revealButtonsAndHideProgressBar();
 
         LOGGED_IN=false;
     }
