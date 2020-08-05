@@ -26,14 +26,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingTop="200dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
-                android:gravity="end"
-                android:paddingTop="200dp"
+                android:gravity="center"
+
                 android:paddingEnd="5dp"
                 android:paddingStart="5dp"
                 android:text="@string/e_mail"
@@ -42,6 +43,7 @@
                 android:id="@+id/recoveryEmail"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
                 android:layout_weight=".5"
                 android:hint="@string/example_abc_com"
                 android:textSize="20sp"
@@ -50,25 +52,34 @@
                 android:gravity="start"
                 android:autofillHints="no" />
         </LinearLayout>
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:background="#56EC56"
-            android:text="@string/submit"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
-        <Button
-            android:id="@+id/exitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#E33F3F"
-            android:text="@string/exit"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:background="@drawable/ic_button"
+                android:textColor="@color/White"
+                android:textSize="18sp"
+                android:text="@string/submit"
+                android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/exitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_button"
+                android:textColor="@color/White"
+                android:textSize="18sp"
+                android:text="@string/exit"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/recAccountMessage"
             android:layout_width="wrap_content"
