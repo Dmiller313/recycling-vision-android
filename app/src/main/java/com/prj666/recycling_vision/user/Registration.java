@@ -116,7 +116,7 @@ public class Registration extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Missing Information", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Missing Information", Toast.LENGTH_LONG).show();
 
                 }
             }
