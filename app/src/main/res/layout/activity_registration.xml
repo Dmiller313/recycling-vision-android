@@ -6,20 +6,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_login_background"
     tools:context=".user.Registration">
-
+    
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:isScrollContainer="true"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:id="@+id/registration_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/btnRegister"
             app:layout_constraintTop_toBottomOf="@id/txtTitle">
 
             <LinearLayout
@@ -38,7 +39,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="@string/username"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/LightGrey"
                     android:textSize="18sp" />
 
                 <EditText
@@ -65,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.25"
                     android:text="@string/password"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/LightGrey"
                     android:textSize="18sp" />
 
                 <EditText
@@ -94,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/re_enter_password"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/LightGrey"
                     android:textSize="18sp" />
 
                 <EditText
@@ -120,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/email"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/LightGrey"
                     android:textSize="18sp" />
 
                 <EditText
@@ -128,6 +129,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autofillHints=""
+                    android:digits="abcdefghijklmnopqrstuvwxyz
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                                    0123456789
+                                    @._"
                     android:ems="10"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/Black" />
@@ -147,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/phone"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/LightGrey"
                     android:textSize="18sp" />
 
                 <EditText
@@ -175,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/postal_code"
-                    android:textColor="@color/Black"
+                    android:textColor="@color/LightGrey"
                     android:textSize="18sp" />
 
                 <EditText
@@ -195,16 +200,18 @@
                 android:layout_marginVertical="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/date_of_birth_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/date_of_birth"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/LightGrey"
                         android:textSize="18sp"
                         app:layout_constraintTop_toBottomOf="@+id/postal_code_text" />
 
@@ -213,7 +220,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/dob_format"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/LightGrey"
                         android:textSize="15sp" />
                 </LinearLayout>
 
@@ -221,8 +228,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/edtTxtYear"
@@ -233,11 +240,13 @@
                         android:inputType="date"
                         android:maxLength="4"
                         android:textColor="@color/Black" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="-"/>
+                        android:text="-"
+                        android:textSize="18sp" />
+
                     <EditText
                         android:id="@+id/edtTxtMonth"
                         android:layout_width="wrap_content"
@@ -247,11 +256,13 @@
                         android:inputType="date"
                         android:maxLength="2"
                         android:textColor="@color/Black" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="-"/>
+                        android:text="-"
+                        android:textSize="18sp" />
+
                     <EditText
                         android:id="@+id/edtTxtDay"
                         android:layout_width="wrap_content"
@@ -264,18 +275,19 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <Button
                 android:id="@+id/btnRegister"
                 android:layout_width="130dp"
                 android:layout_height="54dp"
-                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/ic_login_button"
                 android:backgroundTint="@color/LightSkyBlue"
                 android:text="@string/register"
                 android:textColor="@color/LightSkyBlue"
                 android:textSize="18sp"
-                android:layout_gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
