@@ -45,7 +45,8 @@ public class RecyclingReference extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nav = new Intent(RecyclingReference.this, Navigation.class);
+                Intent nav = new Intent(RecyclingReference.this, Navigation.class)
+                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 RecyclingReference.this.startActivity(nav);
             }
         });
