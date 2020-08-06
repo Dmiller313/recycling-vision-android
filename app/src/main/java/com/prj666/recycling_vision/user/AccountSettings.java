@@ -7,10 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -176,13 +179,16 @@ public class AccountSettings extends AppCompatActivity {
                                             LinearLayout.LayoutParams.MATCH_PARENT);
         final EditText updatedPostalCode = new EditText(this);
         updatedPostalCode.setLayoutParams(lp);
+        updatedPostalCode.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
+
         new AlertDialog.Builder(this)
                 .setTitle("Enter a new postal code")
                 .setView(updatedPostalCode) //embed the EditText into the AlertDialog
                 .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(updatedPostalCode.length() == 6)
+                        if(updatedPostalCode.length() == updatedPostalCode.getFilters().length
+                        && updatedPostalCode.getText().toString().matches("[0-9]*[a-zA-Z]*"))
                         {
                             userSettings.setPostalCode(updatedPostalCode.getText().toString());
                         }
