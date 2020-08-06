@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PasswordReset extends AppCompatActivity {
-    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=])(?=\\S+$).{8,}$";
+
     private TextView email, password, newPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,7 @@ public class PasswordReset extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please complete all fields", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (!(newPassword.getText().toString().matches(PASSWORD_PATTERN))) {
+        if (!(newPassword.getText().toString().matches(Registration.getPasswordPattern()))) {
             Toast.makeText(getApplicationContext(), "Invalid Password, Must contain at least 1 digit, 1 lower case letter, 1 uppercase letter, 1 special character and" +
                     " be more than 8 characters", Toast.LENGTH_LONG).show();
             return false;

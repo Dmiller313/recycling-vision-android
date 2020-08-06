@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity {
 
-    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=])(?=\\S+$).{8,}$";
+    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=/'?:,(){}~`_.-\\\\\\[\\]])(?=\\S+$).{8,}$";
     private static final String Date_pattern = "^[0-9]{4}([-])(((0[13578]|(10|12))\\1(0[1-9]|[1-2][0-9]|3[0-1]))|(02\\1(0[1-9]|[1-2][0-9]))|((0[469]|11)\\1(0[1-9]|[1-2][0-9]|30)))$";
     private static final String phone_pattern = "^(\\d{10})|(([\\(]?([0-9]{3})[\\)]?)?[ \\.\\-]?([0-9]{3})[ \\.\\-]([0-9]{4}))$\n";
     private TextView edtTxtUserName, edtTxtPassword, edtTxtRepeatPass,
@@ -180,5 +180,10 @@ public class Registration extends AppCompatActivity {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public static String getPasswordPattern()
+    {
+        return PASSWORD_PATTERN;
     }
 }
