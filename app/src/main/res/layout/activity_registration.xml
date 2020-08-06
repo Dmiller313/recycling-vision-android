@@ -297,7 +297,7 @@
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="95dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/ic_recycling_vision_logo2"
         app:layout_constraintEnd_toEndOf="parent"
