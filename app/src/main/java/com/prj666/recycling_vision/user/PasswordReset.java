@@ -88,7 +88,7 @@ public class PasswordReset extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nav = new Intent(PasswordReset.this, Navigation.class);
+                Intent nav = new Intent(PasswordReset.this, AccountSettings.class);
                 PasswordReset.this.startActivity(nav);
             }
         });
