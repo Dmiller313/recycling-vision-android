@@ -40,6 +40,10 @@
         android:paddingTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent">
         <Button
+            android:layout_marginRight="30dp"
+            android:textColor="#007800"
+            android:backgroundTint="#007800"
+            android:background="@drawable/ic_login_button"
             android:id="@+id/accept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +51,9 @@
             android:text="@string/accept" />
 
         <Button
+            android:textColor="#950A00"
+            android:backgroundTint="#950A00"
+            android:background="@drawable/ic_login_button"
             android:id="@+id/decline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
