@@ -10,28 +10,29 @@
         app:layout_constraintRight_toRightOf="parent"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="250dp">
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:src="@drawable/image_placeholder" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp">
+            android:layout_marginHorizontal="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: objectName"
+                android:text="Name:\nobjectName"
                 android:layout_weight="1"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Probability Match: probabilityMatch"
+                android:text="Probability Match:\nprobabilityMatch"
                 android:layout_weight="1"/>
 
             <TextView
@@ -41,9 +42,15 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User ID: userID"/>
+                android:text="User ID:\nuserID"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of Recognition:\nrecognitionDate"/>
         </LinearLayout>
     </LinearLayout>
 
