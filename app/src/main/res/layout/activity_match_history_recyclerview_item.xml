@@ -10,11 +10,11 @@
         app:layout_constraintRight_toRightOf="parent"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_gravity="center"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/image_placeholder" />
 
         <LinearLayout
@@ -36,12 +36,6 @@
                 android:layout_weight="1"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instructions:\nrecyclingInstructions\nhello world\nthis is a test"
-                android:layout_weight="1"/>
-
-            <TextView
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,10 +48,22 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:id="@+id/history_item_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instructions:\ninstruction1\ninstruction2\ninstruction3"
+        app:layout_constraintTop_toBottomOf="@id/history_item"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/history_item_divider"/>
+
     <View
         android:id="@+id/history_item_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/Gray"
-        app:layout_constraintTop_toBottomOf="@id/history_item" />
+        app:layout_constraintTop_toBottomOf="@id/history_item_instructions" />
 </androidx.constraintlayout.widget.ConstraintLayout>
