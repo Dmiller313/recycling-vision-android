@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp">
         <ImageView
+            android:id="@+id/history_item_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/image_placeholder" />
@@ -23,24 +24,28 @@
             android:layout_marginHorizontal="10dp">
 
             <TextView
+                android:id="@+id/history_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: objectName"
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/history_item_probability_match"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Probability Match: probabilityMatch"
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/history_item_instructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Instructions:\nrecyclingInstructions\nhello world\nthis is a test"
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/history_item_userID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User ID: userID"/>
