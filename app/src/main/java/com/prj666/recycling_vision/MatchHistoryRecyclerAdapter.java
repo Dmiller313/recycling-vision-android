@@ -41,7 +41,7 @@ public class MatchHistoryRecyclerAdapter extends RecyclerView.Adapter<MatchHisto
     {
         MatchHistoryItem item = this.historyItems.get(position);
 
-        holder
+        holder.objectImage.setImageBitmap(item.getObjectImageBitmap());
     }
 
     //returns number of items in the adapter's dataset
@@ -59,7 +59,11 @@ public class MatchHistoryRecyclerAdapter extends RecyclerView.Adapter<MatchHisto
         public MatchHistoryViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            
+            objectImage = itemView.findViewById(R.id.history_item_image);
+            objectName = itemView.findViewById(R.id.history_item_name);
+            recyclingInstructions = itemView.findViewById(R.id.history_item_instructions);
+            probabilityMatch = itemView.findViewById(R.id.history_item_probability_match);
+            userID = itemView.findViewById(R.id.history_item_userID);
         }
     }
 }
