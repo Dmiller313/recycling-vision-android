@@ -1,10 +1,8 @@
-package com.prj666.recycling_vision.user;
+package com.prj666.recycling_vision;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
-import com.prj666.recycling_vision.R;
 
 public class MatchHistory extends AppCompatActivity {
 

@@ -98,12 +98,21 @@ public class Navigation extends AppCompatActivity {
                 Button takePhoto = findViewById(R.id.takephoto);
                 Button settings = findViewById(R.id.settings);
                 Button reference = findViewById(R.id.reference);
+                Button history = findViewById(R.id.matchHistory);
 
                 takePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         Intent i = new Intent(Navigation.this, TakePhoto.class);
+                        startActivity(i);
+                    }
+                });
+
+                history.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Navigation.this, MatchHistory.class);
                         startActivity(i);
                     }
                 });
