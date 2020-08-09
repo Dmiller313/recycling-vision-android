@@ -48,22 +48,21 @@ public class MatchHistoryRecyclerAdapter extends RecyclerView.Adapter<MatchHisto
     @Override
     public int getItemCount()
     {
-        return 0;
+        return historyItems.size();
     }
 
     //the view item itself
     public class MatchHistoryViewHolder extends RecyclerView.ViewHolder
     {
         ImageView objectImage;
-        TextView objectName, recyclingInstructions, probabilityMatch, userID;
+        TextView objectName, recyclingInstructions, probabilityMatch;
         public MatchHistoryViewHolder(@NonNull View itemView)
         {
             super(itemView);
             objectImage = itemView.findViewById(R.id.history_item_image);
             objectName = itemView.findViewById(R.id.history_item_name);
             recyclingInstructions = itemView.findViewById(R.id.history_item_instructions);
-            probabilityMatch = itemView.findViewById(R.id.history_item_probability_match);
-            userID = itemView.findViewById(R.id.history_item_userID);
+            probabilityMatch = itemView.findViewById(R.id.history_item_percentage);
         }
     }
 }
