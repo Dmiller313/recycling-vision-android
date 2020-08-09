@@ -6,64 +6,59 @@
 
     <LinearLayout
         android:id="@+id/history_item"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/image_placeholder" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ImageView
+            android:id="@+id/history_item_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/image_placeholder"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name:\nobjectName"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Probability Match:\nprobabilityMatch"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User ID:\nuserID"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date of Recognition:\nrecognitionDate"/>
-        </LinearLayout>
+            android:text="Recycling Instructions:\n"
+            app:layout_constraintLeft_toRightOf="@id/history_item_image"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:textAlignment="center"
-        android:id="@+id/history_item_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instructions:\ninstruction1\ninstruction2\ninstruction3"
+    <LinearLayout
+        android:id="@+id/history_item_info"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/history_item"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/history_item_divider"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:\nobjectName"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Probability Match:\n##%"/>
+
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Recognition:\ndate"/>
+    </LinearLayout>
 
     <View
+        android:layout_marginTop="5dp"
         android:id="@+id/history_item_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/Gray"
-        app:layout_constraintTop_toBottomOf="@id/history_item_instructions" />
+        app:layout_constraintTop_toBottomOf="@id/history_item_info" />
 </androidx.constraintlayout.widget.ConstraintLayout>
