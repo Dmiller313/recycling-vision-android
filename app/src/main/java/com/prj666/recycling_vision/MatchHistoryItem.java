@@ -114,4 +114,19 @@ public class MatchHistoryItem {
     {
         return this.foundRecyclingInstruction;
     }
+
+    public String getMatchDateTime()
+    {
+        return String.valueOf(this.matchDateTime);
+    }
+
+    public int getUserID()
+    {
+        return this.userID;
+    }
+
+    public int getHistoryItemID()
+    {
+        return this.historyItemID;
+    }
 }
