@@ -109,4 +109,9 @@ public class MatchHistoryItem {
     {
         return this.objectImageBitmap;
     }
+
+    public String getFoundRecyclingInstruction()
+    {
+        return this.foundRecyclingInstruction;
+    }
 }
