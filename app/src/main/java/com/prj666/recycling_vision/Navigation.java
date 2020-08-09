@@ -109,14 +109,6 @@ public class Navigation extends AppCompatActivity {
                     }
                 });
 
-                history.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(Navigation.this, MatchHistory.class);
-                        startActivity(i);
-                    }
-                });
-
                 settings.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

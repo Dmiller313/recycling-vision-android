@@ -68,7 +68,6 @@
             android:background="@drawable/ic_recycling_reference_menu_icon"
 
             app:layout_constraintRight_toLeftOf="@id/settings"/>
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
