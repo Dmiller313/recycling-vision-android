@@ -1,7 +1,6 @@
 package com.prj666.recycling_vision.user;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,11 +25,10 @@ import com.prj666.recycling_vision.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import okhttp3.internal.platform.Platform;
-
 public class Login extends AppCompatActivity
 {
     private static boolean LOGGED_IN = false;
+    private static int USER_ID = -1;
 
     private EditText email, password;
     private TextView loginErrorMessage;
@@ -141,6 +139,7 @@ public class Login extends AppCompatActivity
         revealButtonsAndHideProgressBar();
 
         LOGGED_IN=false;
+        USER_ID=-1;
     }
 
     public void checkIfUserExists(JSONObject jsonLogin)
@@ -156,6 +155,7 @@ public class Login extends AppCompatActivity
                     public void onResponse(JSONObject response) {
                         try {
                         String status = response.getString("status");
+                        int userID = response.getInt("userID");
                             if(status.equals("success") || status.equals("recover"))
                             {
                                 //clear any previous error messages on incorrect login details
@@ -163,6 +163,10 @@ public class Login extends AppCompatActivity
 
                                 //set authentication flag and redirect user to app's navigation menu
                                 LOGGED_IN = true;
+
+                                //store the current user's ID for use in MatchHistory to populate their match history
+                                USER_ID = userID;
+
                                 Intent toNavigationMenu = new Intent(getApplicationContext(), Navigation.class);
                                 startActivity(toNavigationMenu);
                             }
@@ -179,13 +183,11 @@ public class Login extends AppCompatActivity
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //System.out.println("user doesn't exist!");
 
                         //if there is an error is comparing the user's login credentials against their
                         //stored credentials in the database, display an error message
                         revealButtonsAndHideProgressBar();
                         loginErrorMessage.setText(R.string.username_password_error_message);
-                        //Toast.makeText(getApplicationContext(), "No user found!", Toast.LENGTH_SHORT).show();
                     }
         });
         //add the current request to the RequestQueue
@@ -218,6 +220,11 @@ public class Login extends AppCompatActivity
         loginProgressBar.setVisibility(View.INVISIBLE);
         signInButton.setVisibility(View.VISIBLE);
         accountRecoveryButton.setVisibility(View.VISIBLE);
+    }
+
+    public static int getUserId()
+    {
+        return USER_ID;
     }
 
     @Override

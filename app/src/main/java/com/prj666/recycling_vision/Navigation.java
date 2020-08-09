@@ -98,6 +98,7 @@ public class Navigation extends AppCompatActivity {
                 Button takePhoto = findViewById(R.id.takephoto);
                 Button settings = findViewById(R.id.settings);
                 Button reference = findViewById(R.id.reference);
+                Button matchHistory = findViewById(R.id.nav_match_history);
 
                 takePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -120,6 +121,14 @@ public class Navigation extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(Navigation.this, RecyclingReference.class);
+                        startActivity(i);
+                    }
+                });
+
+                matchHistory.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Navigation.this, MatchHistory.class);
                         startActivity(i);
                     }
                 });
