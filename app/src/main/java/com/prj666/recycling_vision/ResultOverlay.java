@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.prj666.recycling_vision.user.Login;
 
 
 import org.json.JSONException;
@@ -29,6 +30,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.lang.String.valueOf;
 
 public class ResultOverlay extends AppCompatActivity {
 
@@ -83,12 +86,11 @@ public class ResultOverlay extends AppCompatActivity {
                         if (status.equals("success")) {
                             result[0] = response.getString("data");
                             instructions.setText(result[0]);
-                            /* TODO: REENABLE THIS CODE ONCE userID IS ACCESSIBLE
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             bmp.compress(Bitmap.CompressFormat.JPEG, 20, baos);
                             byte [] imageData = baos.toByteArray();
                             String base64Img = Base64.encodeToString(imageData, 0);
-                            int userID = ;
+                            String userID = valueOf(Login.getUserId());
 
                             RequestQueue historyQueue = Volley.newRequestQueue(ResultOverlay.this);
                             String historyUrl = "https://recycling-vision.herokuapp.com/matchhistoryitem";
@@ -116,7 +118,8 @@ public class ResultOverlay extends AppCompatActivity {
                                     error.getStackTrace();
                                 }
                             });
-                            */
+
+                            historyQueue.add(historyReq);
 
                         } else {
                             result[0] = "Error";
