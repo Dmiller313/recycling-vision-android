@@ -87,7 +87,7 @@ public class ResultOverlay extends AppCompatActivity {
                             result[0] = response.getString("data");
                             instructions.setText(result[0]);
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bmp.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                            bmp.compress(Bitmap.CompressFormat.JPEG, 60, baos);
                             byte [] imageData = baos.toByteArray();
                             String base64Img = Base64.encodeToString(imageData, 0);
                             String userID = valueOf(Login.getUserId());
