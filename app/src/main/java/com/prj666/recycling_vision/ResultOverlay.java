@@ -26,8 +26,11 @@ import com.prj666.recycling_vision.user.Login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +38,7 @@ import static java.lang.String.valueOf;
 
 public class ResultOverlay extends AppCompatActivity {
 
-
+    private final String SETTINGS_FILE = "accountSettings.txt";
     private TextView instructions;
     private String percentage;
 
@@ -75,7 +78,24 @@ public class ResultOverlay extends AppCompatActivity {
             JSONObject json = new JSONObject(jsonData);
 
             final String[] result = {""};
-
+            boolean history = true;
+            File userSettingsFile = new File(this.getFilesDir(), SETTINGS_FILE);
+            if(userSettingsFile.exists()){
+                FileReader fr = null;
+                try {
+                    fr = new FileReader(userSettingsFile);
+                    BufferedReader br = new BufferedReader(fr);
+                    String fileContents;
+                    while ((fileContents = br.readLine()) != null && history) {
+                        if(fileContents.equals("objectHistoryEnabled=false")){
+                            history = false;
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            boolean finalHistory = history;
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
 
@@ -86,40 +106,43 @@ public class ResultOverlay extends AppCompatActivity {
                         if (status.equals("success")) {
                             result[0] = response.getString("data");
                             instructions.setText(result[0]);
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bmp.compress(Bitmap.CompressFormat.JPEG, 60, baos);
-                            byte [] imageData = baos.toByteArray();
-                            String base64Img = Base64.encodeToString(imageData, 0);
-                            String userID = valueOf(Login.getUserId());
+                            if(finalHistory){
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                bmp.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+                                byte [] imageData = baos.toByteArray();
+                                String base64Img = Base64.encodeToString(imageData, 0);
+                                String userID = valueOf(Login.getUserId());
 
-                            RequestQueue historyQueue = Volley.newRequestQueue(ResultOverlay.this);
-                            String historyUrl = "https://recycling-vision.herokuapp.com/addmatchhistoryitem";
-                            Map<String, String> insertJsonData = new HashMap<>();
-                            insertJsonData.put("objectName", object);
-                            insertJsonData.put("probabilityMatch", percentage);
-                            insertJsonData.put("objectImage", base64Img);
-                            insertJsonData.put("foundRecyclingInstruction", result[0]);
-                            insertJsonData.put("userID", userID);
+                                RequestQueue historyQueue = Volley.newRequestQueue(ResultOverlay.this);
+                                String historyUrl = "https://recycling-vision.herokuapp.com/addmatchhistoryitem";
+                                Map<String, String> insertJsonData = new HashMap<>();
+                                insertJsonData.put("objectName", object);
+                                insertJsonData.put("probabilityMatch", percentage);
+                                insertJsonData.put("objectImage", base64Img);
+                                insertJsonData.put("foundRecyclingInstruction", result[0]);
+                                insertJsonData.put("userID", userID);
 
-                            JSONObject historyJson = new JSONObject(insertJsonData);
+                                JSONObject historyJson = new JSONObject(insertJsonData);
 
-                            JsonObjectRequest historyReq = new JsonObjectRequest(Request.Method.POST,
-                                    historyUrl, historyJson, new Response.Listener<JSONObject>(){
+                                JsonObjectRequest historyReq = new JsonObjectRequest(Request.Method.POST,
+                                        historyUrl, historyJson, new Response.Listener<JSONObject>(){
 
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    System.out.println("Match history saved");
-                                }
-                            }, new Response.ErrorListener(){
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        System.out.println("Match history saved");
+                                    }
+                                }, new Response.ErrorListener(){
 
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    System.out.println("Error saving match history");
-                                    error.getStackTrace();
-                                }
-                            });
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        System.out.println("Error saving match history");
+                                        error.getStackTrace();
+                                    }
+                                });
 
-                            historyQueue.add(historyReq);
+                                historyQueue.add(historyReq);
+                            }
+
 
                         } else {
                             result[0] = "Error";
