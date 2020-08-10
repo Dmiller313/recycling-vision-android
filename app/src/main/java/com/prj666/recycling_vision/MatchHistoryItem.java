@@ -115,9 +115,9 @@ public class MatchHistoryItem {
         return this.foundRecyclingInstruction;
     }
 
-    public String getMatchDateTime()
+    public Date getMatchDateTime()
     {
-        return String.valueOf(this.matchDateTime);
+        return this.matchDateTime;
     }
 
     public int getUserID()
