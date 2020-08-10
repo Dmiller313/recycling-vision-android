@@ -115,8 +115,8 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
             Bundle extras = data.getExtras();
             bmp = (Bitmap) extras.get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp = Bitmap.createScaledBitmap(bmp, 512, 512, true);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 20, stream);
+            
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
             previewImage.setImageBitmap(bmp);
             img = stream.toByteArray();
@@ -167,8 +167,8 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
                     String jsonData = response.body().string();
                     JSONObject json = new JSONObject(jsonData);
                     String object = json.getString("foundObject");
-                    //String percentage = json.getString("matchPercent");
-                    //resultOverlay.putExtra("percentage", percentage);
+                    String percentage = json.getString("matchPercent");
+                    resultOverlay.putExtra("matchPercent", percentage);
                     resultOverlay.putExtra("object", object);
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
