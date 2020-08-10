@@ -1,6 +1,7 @@
 package com.prj666.recycling_vision;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +43,7 @@ public class MatchHistory extends AppCompatActivity {
         ArrayList<MatchHistoryItem> matchHistoryItem = new ArrayList<MatchHistoryItem>();
         RequestQueue queue = Volley.newRequestQueue(this);
         RecyclerView rv = findViewById(R.id.match_history_recyclerview_container);
+        TextView matchHistoryInfoMessage = findViewById(R.id.match_history_info_message);
 
         String url = "https://recycling-vision.herokuapp.com/matchhistoryitem";
         JSONArray jsonArray = new JSONArray();
@@ -57,6 +60,9 @@ public class MatchHistory extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 if (response.length() > 0) {
+                    matchHistoryInfoMessage.setVisibility(View.INVISIBLE);
+                    rv.setVisibility(View.VISIBLE);
+
                     try {
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject item = response.getJSONObject(i);
@@ -90,7 +96,8 @@ public class MatchHistory extends AppCompatActivity {
                 }
                 else
                 {
-                    
+                    rv.setVisibility(View.INVISIBLE);
+                    matchHistoryInfoMessage.setVisibility(View.VISIBLE);
                 }
             }
         }, new Response.ErrorListener() {
