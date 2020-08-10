@@ -26,6 +26,13 @@
         app:layout_constraintBottom_toTopOf="@id/match_history_recyclerview_container"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray"
+        app:layout_constraintBottom_toTopOf="@id/match_history_recyclerview_container"
+        android:layout_marginBottom="1dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/match_history_recyclerview_container"
         android:layout_width="match_parent"
