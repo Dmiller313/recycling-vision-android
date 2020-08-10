@@ -63,6 +63,7 @@ public class MatchHistory extends AppCompatActivity {
                         Date matchDate = dateFormat.parse(item.getString("matchDateTime").substring(0, item.getString("matchDateTime").length()-14));
                         byte[] array = Base64.decode( item.getString("objectImage"), Base64.DEFAULT);
                         Bitmap bm = BitmapFactory.decodeByteArray(array, 0, array.length);
+
                         matchHistoryItem.add(new MatchHistoryItem(
                                 item.getInt("historyItemID"),
                                 item.getInt("objectID"),
@@ -71,6 +72,8 @@ public class MatchHistory extends AppCompatActivity {
                                 matchDate
                         ));
                         matchHistoryItem.get(i).setObjectImageBitmap(bm);
+                        matchHistoryItem.get(i).setObjectName(item.getString("objectName"));
+                        matchHistoryItem.get(i).setProbabilityMatch(item.getDouble("probabilitymatch"));
 
                         runOnUiThread(()->{
                             MatchHistoryRecyclerAdapter matchHistoryRecyclerAdapter = new MatchHistoryRecyclerAdapter(getApplication(), matchHistoryItem);
