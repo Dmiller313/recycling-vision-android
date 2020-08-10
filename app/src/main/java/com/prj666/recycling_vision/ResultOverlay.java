@@ -91,7 +91,7 @@ public class ResultOverlay extends AppCompatActivity {
                             int userID = ;
 
                             RequestQueue historyQueue = Volley.newRequestQueue(ResultOverlay.this);
-                            String historyUrl = "https://recycling-vision.herokuapp.com/matchhistoryitem";
+                            String historyUrl = "https://recycling-vision.herokuapp.com/addmatchhistoryitem";
                             Map<String, String> insertJsonData = new HashMap<>();
                             insertJsonData.put("objectName", object);
                             insertJsonData.put("probabilityMatch", percentage);
