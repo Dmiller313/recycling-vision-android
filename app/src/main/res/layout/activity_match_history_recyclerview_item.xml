@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:paddingEnd="15dp"
             android:id="@+id/history_item_image"
             android:layout_width="85dp"
             android:layout_height="85dp"
@@ -24,7 +25,6 @@
             <TextView
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:text="Recycling Instructions:"/>
@@ -40,6 +40,7 @@
     </LinearLayout>
 
     <View
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="0.5dp"
         android:background="@color/Gray"
@@ -54,8 +55,8 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.5"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -76,12 +77,13 @@
         </LinearLayout>
 
         <View
+            android:layout_marginTop="5dp"
             android:layout_width="0.5dp"
             android:layout_height="50dp"
             android:background="@color/Gray"/>
 
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -103,12 +105,13 @@
         </LinearLayout>
 
         <View
+            android:layout_marginTop="5dp"
             android:layout_width="0.5dp"
             android:layout_height="50dp"
             android:background="@color/Gray"/>
 
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -131,6 +134,7 @@
     </LinearLayout>
 
     <View
+        android:layout_marginBottom="5dp"
         android:id="@+id/history_item_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -135,7 +135,7 @@ public class Navigation extends AppCompatActivity {
 
             }
             else {
-                Intent i = new Intent(Navigation.this, Login.class);
+                Intent i = new Intent(Navigation.this, Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         }

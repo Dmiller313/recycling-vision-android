@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class MatchHistoryRecyclerAdapter extends RecyclerView.Adapter<MatchHistoryRecyclerAdapter.MatchHistoryViewHolder>
 {
@@ -44,9 +47,13 @@ public class MatchHistoryRecyclerAdapter extends RecyclerView.Adapter<MatchHisto
         holder.objectImage.setImageBitmap(item.getObjectImageBitmap());
         holder.objectName.setText(item.getObjectName());
 
-        holder.probabilityMatch.setText(String.valueOf(item.getProbabilityMatch()));
+        holder.probabilityMatch.setText(String.valueOf(item.getProbabilityMatch()) + "%");
         holder.recyclingInstructions.setText(item.getFoundRecyclingInstruction());
-        holder.recognitionDate.setText(item.getMatchDateTime());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy", Locale.ENGLISH);
+        String dateTimeRecognition = sdf.format(item.getMatchDateTime());
+        System.out.println(dateTimeRecognition);
+        holder.recognitionDate.setText(dateTimeRecognition);
     }
 
     //returns number of items in the adapter's dataset
