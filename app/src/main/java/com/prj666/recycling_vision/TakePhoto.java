@@ -215,7 +215,6 @@ public class TakePhoto extends AppCompatActivity implements ConfirmPictureFragme
     }
 
     public void onBackPressed() {
-        startActivity(new Intent(this, Navigation.class));
-        finishAffinity();
+        startActivity(new Intent(this, Navigation.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 }
