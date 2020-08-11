@@ -15,13 +15,20 @@
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintBottom_toTopOf="@id/scrollView2"/>
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="65dp"
         android:layout_marginEnd="10dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
@@ -32,15 +39,25 @@
             android:layout_height="wrap_content"
             android:text="@string/terms_of_use_contents"/>
     </ScrollView>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray"
+        app:layout_constraintTop_toBottomOf="@id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@id/touButtons"/>
+
     <LinearLayout
         android:id="@+id/touButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="15dp"
-        android:layout_marginBottom="5dp"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="7dp"
         android:layout_marginHorizontal="3dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider">
         <Button
             android:layout_marginRight="3dp"
             android:textColor="#007800"
