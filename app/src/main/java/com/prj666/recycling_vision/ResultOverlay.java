@@ -71,6 +71,7 @@ public class ResultOverlay extends AppCompatActivity {
             instructions.setText("Please try again");
         }
         else{
+            matchProbability.setVisibility(View.VISIBLE);
             RequestQueue queue = Volley.newRequestQueue(this);
 
             String url = "https://recycling-vision.herokuapp.com/item/single";
