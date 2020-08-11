@@ -1,7 +1,8 @@
 # Recycling Vision
------Installation Instructions-----
+-----Installation Instructions-----  
 Download the latest .apk file from the Releases tab onto the Android device of your choosing.  
-On your device, before opening the .apk file, be sure to enable installing apps from unknown sources.   Note: instructions may vary depending on your device's version. Consult this link for more details specific to your device: https://www.androidinfotech.com/unknown-sources-app-installation-android/  
+On your device, before opening the .apk file, be sure to enable installing apps from unknown sources.  
+Note: instructions may vary depending on your device's version. Consult this link for more details specific to your device: https://www.androidinfotech.com/unknown-sources-app-installation-android/  
 In your device's file manager, click the .apk file to attempt installation.  
 The installer may complain that the .apk's authors cannot be verified, proceed anyway  
   
