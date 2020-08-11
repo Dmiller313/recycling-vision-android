@@ -47,7 +47,7 @@ public class MatchHistoryRecyclerAdapter extends RecyclerView.Adapter<MatchHisto
         holder.objectImage.setImageBitmap(item.getObjectImageBitmap());
         holder.objectName.setText(item.getObjectName());
 
-        holder.probabilityMatch.setText(String.valueOf(item.getProbabilityMatch()) + "%");
+        holder.probabilityMatch.setText(item.getProbabilityMatch() + "%");
         holder.recyclingInstructions.setText(item.getFoundRecyclingInstruction());
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy", Locale.ENGLISH);
