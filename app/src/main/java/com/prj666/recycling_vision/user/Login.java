@@ -155,7 +155,6 @@ public class Login extends AppCompatActivity
                     public void onResponse(JSONObject response) {
                         try {
                         String status = response.getString("status");
-                        int userID = response.getInt("userID");
                             if(status.equals("success") || status.equals("recover"))
                             {
                                 //clear any previous error messages on incorrect login details
@@ -165,7 +164,7 @@ public class Login extends AppCompatActivity
                                 LOGGED_IN = true;
 
                                 //store the current user's ID for use in MatchHistory to populate their match history
-                                USER_ID = userID;
+                                USER_ID = response.getInt("userID");
 
                                 Intent toNavigationMenu = new Intent(getApplicationContext(), Navigation.class);
                                 startActivity(toNavigationMenu);
