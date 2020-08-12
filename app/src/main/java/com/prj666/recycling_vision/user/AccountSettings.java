@@ -63,7 +63,6 @@ public class AccountSettings extends AppCompatActivity {
         });
 
         //enables/disables the option to track history of previously identified objects
-        historySwitch.setChecked(true); //enable match history toggle upon initial installation
         historySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
