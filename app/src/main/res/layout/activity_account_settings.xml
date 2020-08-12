@@ -17,7 +17,8 @@
             android:textSize="20sp"
             android:text="@string/track_history"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/changePassword"/>
+            app:layout_constraintBottom_toTopOf="@id/changePassword"
+            android:checked="true"/>
 
 
             <Button
