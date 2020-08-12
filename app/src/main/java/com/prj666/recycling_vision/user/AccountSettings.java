@@ -46,22 +46,12 @@ public class AccountSettings extends AppCompatActivity {
 
         historySwitch = findViewById(R.id.historySwitch);
         changePassword = findViewById(R.id.changePassword);
-        changeLocation = findViewById(R.id.changeLocation);
         saveButton = findViewById(R.id.saveButton);
         logoutButton = findViewById(R.id.logout_button);
 
         /*creates or updates a text file stored on the user's device that holds a boolean value
         indicating if they enabled or disabled object history tracking*/
         createOrUpdateObjectHistoryFile();
-
-        /*when clicked, open a dialog window with an editable text field to enable the user to
-        update their postal code*/
-        changeLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateLocation();
-            }
-        });
 
         //enable the user to reset their password
         changePassword.setOnClickListener(new View.OnClickListener() {
@@ -169,35 +159,6 @@ public class AccountSettings extends AppCompatActivity {
         {
             System.out.println(e.getMessage());
         }
-    }
-
-    private void updateLocation()
-    {
-        //set layout parameters for the EditText to appear within the AlertDialog window
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                            LinearLayout.LayoutParams.MATCH_PARENT,
-                                            LinearLayout.LayoutParams.MATCH_PARENT);
-        final EditText updatedPostalCode = new EditText(this);
-        updatedPostalCode.setLayoutParams(lp);
-        updatedPostalCode.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
-
-        new AlertDialog.Builder(this)
-                .setTitle("Enter a new postal code")
-                .setView(updatedPostalCode) //embed the EditText into the AlertDialog
-                .setPositiveButton("Update", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(updatedPostalCode.length() == updatedPostalCode.getFilters().length
-                        && updatedPostalCode.getText().toString().matches("[0-9]*[a-zA-Z]*"))
-                        {
-                            userSettings.setPostalCode(updatedPostalCode.getText().toString());
-                        }
-                    }
-                })
-                .setNegativeButton("Cancel", null)
-                .setCancelable(true) //close AlertDialog via the navigation bar's "back" button
-                .create()
-                .show();
     }
 
 }

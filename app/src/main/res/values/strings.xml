@@ -11,7 +11,7 @@
     <string name="example_abc_com">example@abc.com</string>
     <string name="submit">Submit</string>
     <string name="exit">Cancel</string>
-    <string name="acc_recovery_instr">Please enter the email address used to create the account</string>
+    <string name="acc_recovery_instr">Please enter the email address used to create the account:</string>
     <string name="city_recycling_link"><a href="https://www.toronto.ca/services-payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/">https://www.toronto.ca/services-payments/recycling-organics-garbage/houses/what-goes-in-my-blue-bin/</a></string>
     <string name="link_title">Official City of Toronto \"What Goes in the Blue Bin?\" Recycling Reference Webpage:</string>
     <string name="vemail_success">Success! Check your email to validate your account.</string>

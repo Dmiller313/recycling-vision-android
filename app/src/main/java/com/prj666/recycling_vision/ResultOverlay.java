@@ -31,6 +31,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,8 +58,8 @@ public class ResultOverlay extends AppCompatActivity {
         ImageView image = findViewById(R.id.objectImage);
         Button back = findViewById(R.id.back);
 
-        percentage = intent.getStringExtra("matchPercent");
-        String displayPercent = percentage + "% match";
+        double percentage = Double.parseDouble(intent.getStringExtra("matchPercent"));
+        String displayPercent = new DecimalFormat("#.00").format(percentage) + "% match";
         matchProbability.setText(displayPercent);
 
         String object = intent.getStringExtra("object");
@@ -70,6 +71,7 @@ public class ResultOverlay extends AppCompatActivity {
             instructions.setText("Please try again");
         }
         else{
+            matchProbability.setVisibility(View.VISIBLE);
             RequestQueue queue = Volley.newRequestQueue(this);
 
             String url = "https://recycling-vision.herokuapp.com/item/single";
@@ -117,7 +119,7 @@ public class ResultOverlay extends AppCompatActivity {
                                 String historyUrl = "https://recycling-vision.herokuapp.com/addmatchhistoryitem";
                                 Map<String, String> insertJsonData = new HashMap<>();
                                 insertJsonData.put("objectName", object);
-                                insertJsonData.put("probabilityMatch", percentage);
+                                insertJsonData.put("probabilityMatch", String.valueOf(percentage));
                                 insertJsonData.put("objectImage", base64Img);
                                 insertJsonData.put("foundRecyclingInstruction", result[0]);
                                 insertJsonData.put("userID", userID);
